@@ -1,4 +1,4 @@
-#Auto Service
+###Auto Service
 
 Aplikacja wspomagająca zarządzanie warsztatem samochodowym.
 
