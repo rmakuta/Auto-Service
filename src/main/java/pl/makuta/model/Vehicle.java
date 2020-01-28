@@ -1,14 +1,12 @@
 package pl.makuta.model;
 
-import java.util.Date;
-
 public class Vehicle {
     private int id;
     private String model;
     private String brand;
     private int birth;
     private String regNumber;
-    private Date nextService;
+    private String nextServiceDate;
     private int customerId;
 
     public int getId() {
@@ -51,12 +49,12 @@ public class Vehicle {
         this.regNumber = regNumber;
     }
 
-    public Date getNextService() {
-        return nextService;
+    public String getNextServiceDate() {
+        return nextServiceDate;
     }
 
-    public void setNextService(Date nextService) {
-        this.nextService = nextService;
+    public void setNextServiceDate(String nextServiceDate) {
+        this.nextServiceDate = nextServiceDate;
     }
 
     public int getCustomerId() {
@@ -75,7 +73,7 @@ public class Vehicle {
                 ", brand='" + brand + '\'' +
                 ", birth=" + birth +
                 ", regNumber='" + regNumber + '\'' +
-                ", nextService=" + nextService +
+                ", nextServiceDate='" + nextServiceDate + '\'' +
                 ", customerId=" + customerId +
                 '}';
     }

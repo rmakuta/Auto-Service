@@ -1,12 +1,13 @@
 package pl.makuta.model;
 
-import java.util.Date;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class Order {
     private int id;
-    private Date receiptDate;
-    private Date repairPlannedDate;
-    private Date repairDate;
+    private String adoptionDate;
+    private String repairPlannedDate;
+    private String repairDate;
     private int employeeId;
     private String problemDescription;
     private String repairDescription;
@@ -17,6 +18,10 @@ public class Order {
     private double manHourCost;
     private int manHourQuantity;
 
+    public Order() {
+        setAdoptionDate();
+    }
+
     public int getId() {
         return id;
     }
@@ -25,27 +30,33 @@ public class Order {
         this.id = id;
     }
 
-    public Date getReceiptDate() {
-        return receiptDate;
+    public String getAdoptionDate() {
+        return adoptionDate;
     }
 
-    public void setReceiptDate(Date receiptDate) {
-        this.receiptDate = receiptDate;
+    public void setAdoptionDate(String adoptionDate) {
+        this.adoptionDate = adoptionDate;
     }
 
-    public Date getRepairPlannedDate() {
+    public void setAdoptionDate(){
+        LocalDateTime createdDateTime = LocalDateTime.now();
+        DateTimeFormatter pattern = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        this.adoptionDate = createdDateTime.format(pattern);
+    }
+
+    public String getRepairPlannedDate() {
         return repairPlannedDate;
     }
 
-    public void setRepairPlannedDate(Date repairPlannedDate) {
+    public void setRepairPlannedDate(String repairPlannedDate) {
         this.repairPlannedDate = repairPlannedDate;
     }
 
-    public Date getRepairDate() {
+    public String getRepairDate() {
         return repairDate;
     }
 
-    public void setRepairDate(Date repairDate) {
+    public void setRepairDate(String repairDate) {
         this.repairDate = repairDate;
     }
 
@@ -110,7 +121,6 @@ public class Order {
     }
 
     public void setManHourCost(double manHourCost) {
-
         this.manHourCost = manHourCost;
     }
 
@@ -126,9 +136,9 @@ public class Order {
     public String toString() {
         return "Order{" +
                 "id=" + id +
-                ", receiptDate=" + receiptDate +
-                ", repairPlannedDate=" + repairPlannedDate +
-                ", repairDate=" + repairDate +
+                ", adoptionDate='" + adoptionDate + '\'' +
+                ", repairPlannedDate='" + repairPlannedDate + '\'' +
+                ", repairDate='" + repairDate + '\'' +
                 ", employeeId=" + employeeId +
                 ", problemDescription='" + problemDescription + '\'' +
                 ", repairDescription='" + repairDescription + '\'' +

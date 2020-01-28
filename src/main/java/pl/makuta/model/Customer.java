@@ -1,12 +1,10 @@
 package pl.makuta.model;
 
-import java.util.Date;
-
 public class Customer {
     private int id;
     private String name;
     private String surname;
-    private Date birthDate;
+    private String birthDate;
 
     public int getId() {
         return id;
@@ -32,11 +30,11 @@ public class Customer {
         this.surname = surname;
     }
 
-    public Date getBirthDate() {
+    public String getBirthDate() {
         return birthDate;
     }
 
-    public void setBirthDate(Date birthDate) {
+    public void setBirthDate(String birthDate) {
         this.birthDate = birthDate;
     }
 
@@ -46,7 +44,7 @@ public class Customer {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
-                ", birthDate=" + birthDate +
+                ", birthDate='" + birthDate + '\'' +
                 '}';
     }
 }
