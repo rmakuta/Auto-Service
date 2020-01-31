@@ -1,30 +1,16 @@
 package pl.makuta.model;
 
-public class Status {
-    private int id;
-    private String name;
+public enum Status {
+    ADDED("Przujęty"), ACCEPTED("Zatwierdzone koszty naprawy"), IN_PROGRES("W naprawie"), READY("Gotowy do odbioru"),
+    DELETED("Rezygnacja"), ENDED("Zakończony");
 
-    public int getId() {
-        return id;
+    private String desc;
+
+    Status(String desc) {
+        this.desc = desc;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    @Override
-    public String toString() {
-        return "Status{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                '}';
+    public String getDesc() {
+        return desc;
     }
 }

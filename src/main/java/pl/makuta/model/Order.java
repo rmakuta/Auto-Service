@@ -5,13 +5,13 @@ import java.time.format.DateTimeFormatter;
 
 public class Order {
     private int id;
-    private String adoptionDate;
+    private String addDate;
     private String repairPlannedDate;
     private String repairDate;
     private int employeeId;
     private String problemDescription;
     private String repairDescription;
-    private int statusId;
+    private String status;
     private int vehicleId;
     private double repairCost;
     private double carPartsCost;
@@ -20,6 +20,7 @@ public class Order {
 
     public Order() {
         setAdoptionDate();
+        this.status = Status.ADDED.getDesc().toString();
     }
 
     public int getId() {
@@ -30,18 +31,18 @@ public class Order {
         this.id = id;
     }
 
-    public String getAdoptionDate() {
-        return adoptionDate;
+    public String getAddDate() {
+        return addDate;
     }
 
-    public void setAdoptionDate(String adoptionDate) {
-        this.adoptionDate = adoptionDate;
+    public void setAddDate(String addDate) {
+        this.addDate = addDate;
     }
 
     public void setAdoptionDate(){
         LocalDateTime createdDateTime = LocalDateTime.now();
         DateTimeFormatter pattern = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        this.adoptionDate = createdDateTime.format(pattern);
+        this.addDate = createdDateTime.format(pattern);
     }
 
     public String getRepairPlannedDate() {
@@ -58,6 +59,14 @@ public class Order {
 
     public void setRepairDate(String repairDate) {
         this.repairDate = repairDate;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public int getEmployeeId() {
@@ -82,14 +91,6 @@ public class Order {
 
     public void setRepairDescription(String repairDescription) {
         this.repairDescription = repairDescription;
-    }
-
-    public int getStatusId() {
-        return statusId;
-    }
-
-    public void setStatusId(int statusId) {
-        this.statusId = statusId;
     }
 
     public int getVehicleId() {
@@ -136,13 +137,13 @@ public class Order {
     public String toString() {
         return "Order{" +
                 "id=" + id +
-                ", adoptionDate='" + adoptionDate + '\'' +
+                ", addDate='" + addDate + '\'' +
                 ", repairPlannedDate='" + repairPlannedDate + '\'' +
                 ", repairDate='" + repairDate + '\'' +
                 ", employeeId=" + employeeId +
                 ", problemDescription='" + problemDescription + '\'' +
                 ", repairDescription='" + repairDescription + '\'' +
-                ", statusId=" + statusId +
+                ", status='" + status + '\'' +
                 ", vehicleId=" + vehicleId +
                 ", repairCost=" + repairCost +
                 ", carPartsCost=" + carPartsCost +
