@@ -4,6 +4,8 @@ import pl.makuta.DbUtil;
 import pl.makuta.model.Employee;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class EmployeeDao {
     private static final String CREATE_EMPLOYEE_QUERY = "INSERT INTO employees(name, surname, address, phoneNumber, note, manHourCost) " +
@@ -12,6 +14,7 @@ public class EmployeeDao {
     private static final String UPDATE_EMPLOYEE_QUERY = "UPDATE employees SET name = ?, surname = ?, address = ?, phoneNumber = ?," +
             "note = ?, manHourCost = ? WHERE id = ?";
     private static final String DELETE_EMPLOYEE_QUERY = "DELETE FROM employees WHERE id = ?";
+    private static final String FIND_ALL_EMPLOYEE_QUERY = "SELECT * FROM employees";
 
     public Employee create(Employee employee){
         try (Connection conn = DbUtil.getConnection()){
@@ -79,5 +82,28 @@ public class EmployeeDao {
         }catch (SQLException e){
             e.printStackTrace();
         }
+    }
+
+    public List<Employee> findAll(){
+        try (Connection conn = DbUtil.getConnection()){
+            List<Employee> employees = new ArrayList<>();
+            PreparedStatement statement = conn.prepareStatement(FIND_ALL_EMPLOYEE_QUERY);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()){
+                Employee employee = new Employee();
+                employee.setId(resultSet.getInt("id"));
+                employee.setName(resultSet.getString("name"));
+                employee.setSurname(resultSet.getString("surname"));
+                employee.setAddress(resultSet.getString("address"));
+                employee.setPhoneNumber(resultSet.getString("phoneNumber"));
+                employee.setNote(resultSet.getString("note"));
+                employee.setManHourCost(resultSet.getDouble("manHourCost"));
+                employees.add(employee);
+            }
+            return employees;
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return null;
     }
 }

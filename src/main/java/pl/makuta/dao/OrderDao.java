@@ -123,9 +123,9 @@ public class OrderDao {
                 order.setStatus(resultSet.getString("status"));
                 order.setVehicleId(resultSet.getInt("vehicleId"));
                 order.setRepairCost(resultSet.getDouble("repairCost"));
-                order.setCarPartsCost(resultSet.getDouble("carPartCost"));
+                order.setCarPartsCost(resultSet.getDouble("carPartsCost"));
                 order.setManHourCost(resultSet.getDouble("manHourCost"));
-                order.setManHourQuantity(resultSet.getInt("manHuorQuantiny"));
+                order.setManHourQuantity(resultSet.getInt("manHourQuantity"));
                 orders.add(order);
             }
             return orders;

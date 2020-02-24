@@ -17,10 +17,12 @@ public class DbUtil {
     private static DataSource getInstance() {
         if(ds == null) {
             try {
-                Context ctx = new InitialContext();
-                ds = (DataSource)ctx.lookup("java:comp/env/jdbc/crm");
+                Context initContext = new InitialContext();
+                Context envContext = (Context)initContext.lookup("java:/comp/env/");
+                ds = (DataSource)envContext.lookup("jdbc/crm");
             } catch (NamingException e) {
-                e.printStackTrace();}
+                e.printStackTrace();
+            }
         }
         return ds;
     }

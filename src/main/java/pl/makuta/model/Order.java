@@ -20,7 +20,7 @@ public class Order {
 
     public Order() {
         setAdoptionDate();
-        this.status = Status.ADDED.getDesc().toString();
+        this.status = Status.ADDED.getDesc();
     }
 
     public int getId() {

@@ -1,4 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <header>
-    <p>Nagłówek aplikacji "Auto service"</p>
+    <a href="/">Main page</a>
+    <a href="/employeeList">Employees</a>
+    <a href="/">Admin panel</a>
 </header>
