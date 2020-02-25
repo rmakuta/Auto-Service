@@ -68,6 +68,7 @@ public class EmployeeDao {
             statement.setString(4, employee.getPhoneNumber());
             statement.setString(5, employee.getNote());
             statement.setDouble(6, employee.getManHourCost());
+            statement.setInt(7, employee.getId());
             statement.executeUpdate();
         }catch (SQLException e){
             e.printStackTrace();

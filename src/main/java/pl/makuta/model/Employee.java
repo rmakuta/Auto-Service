@@ -7,7 +7,7 @@ public class Employee {
     private String address;
     private String phoneNumber;
     private String note;
-    private double manHourCost;
+    private Double manHourCost;
 
     public int getId() {
         return id;
