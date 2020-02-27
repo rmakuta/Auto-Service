@@ -11,7 +11,7 @@ public class Order {
     private int employeeId;
     private String problemDescription;
     private String repairDescription;
-    private String status;
+    private enum status {ADDED, ACCEPTED, IN_PROGRES, READY, DELETED, ENDED};
     private int vehicleId;
     private double repairCost;
     private double carPartsCost;
@@ -20,7 +20,6 @@ public class Order {
 
     public Order() {
         setAdoptionDate();
-        this.status = Status.ADDED.getDesc();
     }
 
     public int getId() {
@@ -59,14 +58,6 @@ public class Order {
 
     public void setRepairDate(String repairDate) {
         this.repairDate = repairDate;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
     }
 
     public int getEmployeeId() {
@@ -143,7 +134,6 @@ public class Order {
                 ", employeeId=" + employeeId +
                 ", problemDescription='" + problemDescription + '\'' +
                 ", repairDescription='" + repairDescription + '\'' +
-                ", status='" + status + '\'' +
                 ", vehicleId=" + vehicleId +
                 ", repairCost=" + repairCost +
                 ", carPartsCost=" + carPartsCost +
