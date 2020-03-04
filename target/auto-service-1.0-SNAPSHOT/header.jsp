@@ -3,4 +3,5 @@
     <a href="/">Strona główna</a>
     <a href="/employeeList">Pracownicy</a>
     <a href="/orderList">Zlecenia</a>
+    <a href="customerList">Klienci</a>
 </header>

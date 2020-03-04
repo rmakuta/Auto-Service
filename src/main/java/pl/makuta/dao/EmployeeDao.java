@@ -14,7 +14,7 @@ public class EmployeeDao {
     private static final String UPDATE_EMPLOYEE_QUERY = "UPDATE employees SET name = ?, surname = ?, address = ?, phoneNumber = ?," +
             "note = ?, manHourCost = ? WHERE id = ?";
     private static final String DELETE_EMPLOYEE_QUERY = "DELETE FROM employees WHERE id = ?";
-    private static final String FIND_ALL_EMPLOYEE_QUERY = "SELECT * FROM employees";
+    private static final String FIND_ALL_EMPLOYEES_QUERY = "SELECT * FROM employees";
 
     public Employee create(Employee employee){
         try (Connection conn = DbUtil.getConnection()){
@@ -88,7 +88,7 @@ public class EmployeeDao {
     public List<Employee> findAll(){
         try (Connection conn = DbUtil.getConnection()){
             List<Employee> employees = new ArrayList<>();
-            PreparedStatement statement = conn.prepareStatement(FIND_ALL_EMPLOYEE_QUERY);
+            PreparedStatement statement = conn.prepareStatement(FIND_ALL_EMPLOYEES_QUERY);
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()){
                 Employee employee = new Employee();
