@@ -2,5 +2,5 @@
 <header>
     <a href="/">Main page</a>
     <a href="/employeeList">Employees</a>
-    <a href="/">Admin panel</a>
+    <a href="/orderList">Orders</a>
 </header>

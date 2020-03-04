@@ -11,7 +11,7 @@ public class Order {
     private int employeeId;
     private String problemDescription;
     private String repairDescription;
-    private enum status {ADDED, ACCEPTED, IN_PROGRES, READY, DELETED, ENDED};
+    private Status status;
     private int vehicleId;
     private double repairCost;
     private double carPartsCost;
@@ -84,6 +84,14 @@ public class Order {
         this.repairDescription = repairDescription;
     }
 
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status){
+        this.status = status;
+    }
+
     public int getVehicleId() {
         return vehicleId;
     }
@@ -112,6 +120,25 @@ public class Order {
         return manHourCost;
     }
 
+    @Override
+    public String toString() {
+        return "Order{" +
+                "id=" + id +
+                ", addDate='" + addDate + '\'' +
+                ", repairPlannedDate='" + repairPlannedDate + '\'' +
+                ", repairDate='" + repairDate + '\'' +
+                ", employeeId=" + employeeId +
+                ", problemDescription='" + problemDescription + '\'' +
+                ", repairDescription='" + repairDescription + '\'' +
+                ", status=" + status +
+                ", vehicleId=" + vehicleId +
+                ", repairCost=" + repairCost +
+                ", carPartsCost=" + carPartsCost +
+                ", manHourCost=" + manHourCost +
+                ", manHourQuantity=" + manHourQuantity +
+                '}';
+    }
+
     public void setManHourCost(double manHourCost) {
         this.manHourCost = manHourCost;
     }
@@ -124,21 +151,5 @@ public class Order {
         this.manHourQuantity = manHourQuantity;
     }
 
-    @Override
-    public String toString() {
-        return "Order{" +
-                "id=" + id +
-                ", addDate='" + addDate + '\'' +
-                ", repairPlannedDate='" + repairPlannedDate + '\'' +
-                ", repairDate='" + repairDate + '\'' +
-                ", employeeId=" + employeeId +
-                ", problemDescription='" + problemDescription + '\'' +
-                ", repairDescription='" + repairDescription + '\'' +
-                ", vehicleId=" + vehicleId +
-                ", repairCost=" + repairCost +
-                ", carPartsCost=" + carPartsCost +
-                ", manHourCost=" + manHourCost +
-                ", manHourQuantity=" + manHourQuantity +
-                '}';
-    }
+
 }

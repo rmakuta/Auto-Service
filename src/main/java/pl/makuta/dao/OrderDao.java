@@ -2,6 +2,7 @@ package pl.makuta.dao;
 
 import pl.makuta.DbUtil;
 import pl.makuta.model.Order;
+import pl.makuta.model.Status;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -13,7 +14,7 @@ public class OrderDao {
             "manHourQuantity) VALUE (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
     private static final String READ_ORDER_QUERY = "SELECT * FROM orders WHERE id =?";
     private static final String UPDATE_ORDER_QUERY = "UPDATE orders SET addDate = ?, repairPlannedDate = ?, repairDate = ?, " +
-            "employeeId = ?, problemDescription = ?, repairDescription = ?, status = ?, vehicleId = ?, reapirCost = ?, " +
+            "employeeId = ?, problemDescription = ?, repairDescription = ?, status = ?, vehicleId = ?, repairCost = ?, " +
             "carPartsCost = ?, manHourCost = ?, manHourQuantity = ? WHERE id = ?";
     private static final String DELETE_ORDER_QUERY = "DELETE FROM orders WHERE id = ?";
     private static final String FIND_ALL_ORDER_QUERY = "SELECT * FROM orders";
@@ -27,9 +28,9 @@ public class OrderDao {
             statement.setInt(4, order.getEmployeeId());
             statement.setString(5, order.getProblemDescription());
             statement.setString(6, order.getRepairDescription());
-            statement.setString(7, order.getStatus());
+            statement.setString(7, order.getStatus().name());
             statement.setInt(8, order.getVehicleId());
-            statement.setDouble(9, order.getRepairCost());
+            statement.setDouble(9, order.getCarPartsCost() + (order.getManHourCost() * order.getManHourQuantity()));
             statement.setDouble(10, order.getCarPartsCost());
             statement.setDouble(11, order.getManHourCost());
             statement.setInt(12, order.getManHourQuantity());
@@ -55,12 +56,12 @@ public class OrderDao {
                 order.setId(resultSet.getInt("id"));
                 order.setAddDate(resultSet.getString("addDate"));
                 order.setAddDate(resultSet.getString("addDate"));
-                order.setRepairPlannedDate(resultSet.getString("repairPlaneDate"));
+                order.setRepairPlannedDate(resultSet.getString("repairPlannedDate"));
                 order.setRepairDate(resultSet.getString("repairDate"));
                 order.setEmployeeId(resultSet.getInt("employeeId"));
                 order.setProblemDescription(resultSet.getString("problemDescription"));
                 order.setRepairDescription(resultSet.getString("repairDescription"));
-                order.setStatus(resultSet.getString("status"));
+                order.setStatus(Status.valueOf(resultSet.getString("status")));
                 order.setVehicleId(resultSet.getInt("vehicleId"));
                 order.setRepairCost(resultSet.getDouble("repairCost"));
                 order.setCarPartsCost(resultSet.getDouble("carPartsCost"));
@@ -83,9 +84,9 @@ public class OrderDao {
             statement.setInt(4, order.getEmployeeId());
             statement.setString(5, order.getProblemDescription());
             statement.setString(6, order.getRepairDescription());
-            statement.setString(7, order.getStatus());
+            statement.setString(7, order.getStatus().name());
             statement.setInt(8, order.getVehicleId());
-            statement.setDouble(9, order.getRepairCost());
+            statement.setDouble(9, order.getCarPartsCost() + (order.getManHourCost() * order.getManHourQuantity()));
             statement.setDouble(10, order.getCarPartsCost());
             statement.setDouble(11, order.getManHourCost());
             statement.setInt(12, order.getManHourQuantity());
@@ -120,7 +121,7 @@ public class OrderDao {
                 order.setEmployeeId(resultSet.getInt("employeeId"));
                 order.setProblemDescription(resultSet.getString("problemDescription"));
                 order.setRepairDescription(resultSet.getString("repairDescription"));
-                order.setStatus(resultSet.getString("status"));
+                order.setStatus(Status.valueOf(resultSet.getString("status")));
                 order.setVehicleId(resultSet.getInt("vehicleId"));
                 order.setRepairCost(resultSet.getDouble("repairCost"));
                 order.setCarPartsCost(resultSet.getDouble("carPartsCost"));

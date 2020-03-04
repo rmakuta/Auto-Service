@@ -4,6 +4,8 @@ import pl.makuta.DbUtil;
 import pl.makuta.model.Vehicle;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class VehicleDao {
     private static final String CREATE_VEHICLE_QUERY = "INSERT INTO vehicles(model, brand, birth, regNumber, " +
@@ -12,6 +14,7 @@ public class VehicleDao {
     private static final String UPDATE_VEHICLE_QUERY = "UPDATE vehicles SET model = ?, brand = ?, birth = ?, regNumber = ?, " +
             "nextServiceDate = ?, customerId = ? where id = ?";
     private static final String DELETE_VEHICLE_QUERY = "DELETE FROM vehicles WHERE id = ?";
+    private static final String FIND_ALL_VEHICLE_QUERY = "SELECT * FROM vehicles";
 
     public Vehicle create(Vehicle vehicle){
         try(Connection conn = DbUtil.getConnection()){
@@ -80,5 +83,28 @@ public class VehicleDao {
         }catch (SQLException e){
             e.printStackTrace();
         }
+    }
+
+    public List<Vehicle> findAll(){
+        try (Connection con = DbUtil.getConnection()){
+            List<Vehicle> vehicles = new ArrayList<>();
+            PreparedStatement statement = con.prepareStatement(FIND_ALL_VEHICLE_QUERY);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()){
+                Vehicle vehicle = new Vehicle();
+                vehicle.setId(resultSet.getInt("id"));
+                vehicle.setModel(resultSet.getString("model"));
+                vehicle.setBrand(resultSet.getString("brand"));
+                vehicle.setBirth(resultSet.getInt("birth"));
+                vehicle.setRegNumber(resultSet.getString("regNumber"));
+                vehicle.setNextServiceDate(resultSet.getString("nextServiceDate"));
+                vehicle.setCustomerId(resultSet.getInt("customerId"));
+                vehicles.add(vehicle);
+            }
+            return vehicles;
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return null;
     }
 }
