@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <header>
-    <a href="/">Main page</a>
-    <a href="/employeeList">Employees</a>
-    <a href="/orderList">Orders</a>
+    <a href="/">Strona główna</a>
+    <a href="/employeeList">Pracownicy</a>
+    <a href="/orderList">Zlecenia</a>
 </header>

@@ -6,7 +6,7 @@
 </head>
 <body>
 <jsp:include page="/header.jsp"/>
-<h2>Zlecenia</h2>
+<h2>Zlecenia pracownika: ${employee.getName()} ${employee.getSurname()}</h2>
 <table>
     <tr>
         <th>Data</th>
@@ -45,8 +45,9 @@
         </tr>
     </c:forEach>
 </table>
-<p class="add"><a href="/orderAdd">Add new</a></p>
+<%--<p class="add"><a href="/orderAdd">Add new</a></p>--%>
 <jsp:include page="/footer.jsp"/>
 </body>
 </html>
+
 

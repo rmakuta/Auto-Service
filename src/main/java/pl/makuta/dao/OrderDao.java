@@ -17,7 +17,8 @@ public class OrderDao {
             "employeeId = ?, problemDescription = ?, repairDescription = ?, status = ?, vehicleId = ?, repairCost = ?, " +
             "carPartsCost = ?, manHourCost = ?, manHourQuantity = ? WHERE id = ?";
     private static final String DELETE_ORDER_QUERY = "DELETE FROM orders WHERE id = ?";
-    private static final String FIND_ALL_ORDER_QUERY = "SELECT * FROM orders";
+    private static final String FIND_ALL_ORDERS_QUERY = "SELECT * FROM orders";
+    private static final String FIND_ALL_ORDERS_BY_EMPLOYEEID_QUERY = "SELECT * FROM orders WHERE employeeId = ?";
 
     public Order create(Order order){
         try (Connection conn = DbUtil.getConnection()){
@@ -110,7 +111,37 @@ public class OrderDao {
     public List<Order> findAll(){
         try (Connection conn = DbUtil.getConnection()){
             List<Order> orders = new ArrayList<>();
-            PreparedStatement statement = conn.prepareStatement(FIND_ALL_ORDER_QUERY);
+            PreparedStatement statement = conn.prepareStatement(FIND_ALL_ORDERS_QUERY);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()){
+                Order order = new Order();
+                order.setId(resultSet.getInt("id"));
+                order.setAddDate(resultSet.getString("addDate"));
+                order.setRepairPlannedDate(resultSet.getString("repairPlannedDate"));
+                order.setRepairDate(resultSet.getString("repairDate"));
+                order.setEmployeeId(resultSet.getInt("employeeId"));
+                order.setProblemDescription(resultSet.getString("problemDescription"));
+                order.setRepairDescription(resultSet.getString("repairDescription"));
+                order.setStatus(Status.valueOf(resultSet.getString("status")));
+                order.setVehicleId(resultSet.getInt("vehicleId"));
+                order.setRepairCost(resultSet.getDouble("repairCost"));
+                order.setCarPartsCost(resultSet.getDouble("carPartsCost"));
+                order.setManHourCost(resultSet.getDouble("manHourCost"));
+                order.setManHourQuantity(resultSet.getInt("manHourQuantity"));
+                orders.add(order);
+            }
+            return orders;
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public List<Order> findAllOrdersByEmployeeId(int employeeId){
+        try (Connection con = DbUtil.getConnection()){
+            List<Order> orders = new ArrayList<>();
+            PreparedStatement statement = con.prepareStatement(FIND_ALL_ORDERS_BY_EMPLOYEEID_QUERY);
+            statement.setInt(1, employeeId);
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()){
                 Order order = new Order();

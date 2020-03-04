@@ -2,19 +2,20 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
 <head>
-    <title>Group list</title>
+    <title>Lista pracowników</title>
 </head>
 <body>
 <jsp:include page="/header.jsp"/>
+<h2>Pracownicy</h2>
 <table>
     <tr>
-        <th>Name</th>
-        <th>Surname</th>
-        <th>Address</th>
-        <th>Phone number</th>
-        <th>Note</th>
-        <th>Man hour cost</th>
-        <th>Actions</th>
+        <th>Imię</th>
+        <th>Nazwisko</th>
+        <th>Adres</th>
+        <th>Numer telefonu</th>
+        <th>Notatka</th>
+        <th>Koszt roboczogodziny</th>
+        <th></th>
     </tr>
     <c:forEach items="${employees}" var="employee">
         <tr>
@@ -25,13 +26,14 @@
             <td>${employee.note}</td>
             <td>${employee.manHourCost}</td>
             <td>
-                <a href="/employeeEdit?id=${employee.id}">Edit</a>
-                <a href="/employeeDelete?id=${employee.id}">Delete</a>
+                <a href="/employeeEdit?id=${employee.id}">Edytuj</a>
+                <a href="/employeeDelete?id=${employee.id}">Usuń</a>
+                <a href="/employeeOrders?id=${employee.id}">Zlecenia</a>
             </td>
         </tr>
     </c:forEach>
 </table>
-<p class="add"><a href="/employee/employeeAdd.jsp">Add new</a></p>
+<p class="add"><a href="/employee/employeeAdd.jsp">Dodaj nowego pracownika</a></p>
 <jsp:include page="/footer.jsp"/>
 </body>
 </html>
