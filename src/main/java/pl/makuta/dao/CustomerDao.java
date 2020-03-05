@@ -14,6 +14,7 @@ public class CustomerDao {
     private static final String UPDATE_CUSTOMER_QUERY = "UPDATE customers SET name = ?, surname = ?, birthDate = ? WHERE id = ?";
     private static final String DELETE_CUSTOMER_QUERY = "DELETE FROM customers WHERE id = ?";
     private static final String FIND_ALL_CUSTOMERS_QUERY = "SELECT * FROM customers";
+    private static final String FIND_CUSTOMER_BY_SURNAME_QUERY = "SELECT * FROM customers WHERE surname = ?";
 
     public Customer create(Customer customer){
         try (Connection conn = DbUtil.getConnection()){
@@ -79,6 +80,27 @@ public class CustomerDao {
         try (Connection con = DbUtil.getConnection()){
             List<Customer> customers = new ArrayList<>();
             PreparedStatement statement = con.prepareStatement(FIND_ALL_CUSTOMERS_QUERY);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()){
+                Customer customer = new Customer();
+                customer.setId(resultSet.getInt("id"));
+                customer.setName(resultSet.getString("name"));
+                customer.setSurname(resultSet.getString("surname"));
+                customer.setBirthDate(resultSet.getString("birthDate"));
+                customers.add(customer);
+            }
+            return customers;
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public List<Customer> findCustomerBySurname(String surname){
+        try (Connection con = DbUtil.getConnection()){
+            List<Customer> customers = new ArrayList<>();
+            PreparedStatement statement = con.prepareStatement(FIND_CUSTOMER_BY_SURNAME_QUERY);
+            statement.setString(1, surname);
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()){
                 Customer customer = new Customer();
