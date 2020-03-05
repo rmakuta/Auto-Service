@@ -27,6 +27,7 @@
             <td>
                 <a href="vehicleEdit?id=${vehicle.id}">Edit</a>
                 <a href="/vehicleDelete?id=${vehicle.id}">Delete</a>
+                <a href="/vehicleOrders?id=${vehicle.id}">Naprawy</a>
             </td>
         </tr>
     </c:forEach>

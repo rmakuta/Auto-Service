@@ -1,4 +1,4 @@
-package pl.makuta.controller.employee;
+package pl.makuta.controller.vehicle;
 
 import pl.makuta.dao.EmployeeDao;
 import pl.makuta.dao.OrderDao;
@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/employeeOrders")
-public class EmployeeOrders extends HttpServlet {
+@WebServlet("/vehicleOrders")
+public class VehicleOrders extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("UTF-8");
@@ -21,11 +21,11 @@ public class EmployeeOrders extends HttpServlet {
 
         int id = Integer.parseInt(req.getParameter("id"));
         OrderDao orderDao = new OrderDao();
-        req.setAttribute("orders", orderDao.findAllOrdersByEmployeeId(id));
-        EmployeeDao employeeDao = new EmployeeDao();
-        req.setAttribute("employee", employeeDao.read(id));
-        req.setAttribute("employeeDao", employeeDao);
-        req.setAttribute("vehicleDao", new VehicleDao());
-        req.getRequestDispatcher("/employee/employeeOrders.jsp").forward(req, resp);
+        req.setAttribute("orders", orderDao.findAllOrdersByVehicleId(id));
+        VehicleDao vehicleDao = new VehicleDao();
+        req.setAttribute("vehicle", vehicleDao.read(id));
+        req.setAttribute("vehicleDao", vehicleDao);
+        req.setAttribute("employeeDao", new EmployeeDao());
+        req.getRequestDispatcher("/vehicle/vehicleOrders.jsp").forward(req, resp);
     }
 }

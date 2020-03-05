@@ -14,7 +14,8 @@ public class VehicleDao {
     private static final String UPDATE_VEHICLE_QUERY = "UPDATE vehicles SET model = ?, brand = ?, birth = ?, regNumber = ?, " +
             "nextServiceDate = ?, customerId = ? where id = ?";
     private static final String DELETE_VEHICLE_QUERY = "DELETE FROM vehicles WHERE id = ?";
-    private static final String FIND_ALL_VEHICLE_QUERY = "SELECT * FROM vehicles";
+    private static final String FIND_ALL_VEHICLES_QUERY = "SELECT * FROM vehicles";
+    private static final String FIND_ALL_VEHICLES_BY_CUSTOMERID_QUERY = "SELECT * FROM vehicles WHERE customerId = ?";
 
     public Vehicle create(Vehicle vehicle){
         try(Connection conn = DbUtil.getConnection()){
@@ -88,7 +89,31 @@ public class VehicleDao {
     public List<Vehicle> findAll(){
         try (Connection con = DbUtil.getConnection()){
             List<Vehicle> vehicles = new ArrayList<>();
-            PreparedStatement statement = con.prepareStatement(FIND_ALL_VEHICLE_QUERY);
+            PreparedStatement statement = con.prepareStatement(FIND_ALL_VEHICLES_QUERY);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()){
+                Vehicle vehicle = new Vehicle();
+                vehicle.setId(resultSet.getInt("id"));
+                vehicle.setModel(resultSet.getString("model"));
+                vehicle.setBrand(resultSet.getString("brand"));
+                vehicle.setBirth(resultSet.getInt("birth"));
+                vehicle.setRegNumber(resultSet.getString("regNumber"));
+                vehicle.setNextServiceDate(resultSet.getString("nextServiceDate"));
+                vehicle.setCustomerId(resultSet.getInt("customerId"));
+                vehicles.add(vehicle);
+            }
+            return vehicles;
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public List<Vehicle> findAllVehiclesByCustomerId(int customerId){
+        try (Connection con = DbUtil.getConnection()){
+            List<Vehicle> vehicles = new ArrayList<>();
+            PreparedStatement statement = con.prepareStatement(FIND_ALL_VEHICLES_BY_CUSTOMERID_QUERY);
+            statement.setInt(1, customerId);
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()){
                 Vehicle vehicle = new Vehicle();

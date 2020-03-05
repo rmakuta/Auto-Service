@@ -6,7 +6,7 @@
 </head>
 <body>
 <jsp:include page="/header.jsp"/>
-<h2>Pojazdy</h2>
+<h2>Pojazdy klienta: ${customer.getName()} ${customer.getSurname()}</h2>
 <table>
     <tr>
         <th>Model</th>
@@ -36,4 +36,5 @@
 <jsp:include page="/footer.jsp"/>
 </body>
 </html>
+
 

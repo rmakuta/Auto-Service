@@ -6,7 +6,7 @@
 </head>
 <body>
 <jsp:include page="/header.jsp"/>
-<h2>Zlecenia</h2>
+<h2>Naprawy pojazdu: ${vehicle.getModel()} ${vehicle.getBrand()} ${vehicle.getRegNumber()}</h2>
 <table>
     <tr>
         <th>Data</th>
@@ -49,4 +49,5 @@
 <jsp:include page="/footer.jsp"/>
 </body>
 </html>
+
 

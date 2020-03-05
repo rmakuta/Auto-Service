@@ -4,6 +4,7 @@ import pl.makuta.DbUtil;
 import pl.makuta.model.Order;
 import pl.makuta.model.Status;
 
+import java.net.ConnectException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +20,8 @@ public class OrderDao {
     private static final String DELETE_ORDER_QUERY = "DELETE FROM orders WHERE id = ?";
     private static final String FIND_ALL_ORDERS_QUERY = "SELECT * FROM orders";
     private static final String FIND_ALL_ORDERS_BY_EMPLOYEEID_QUERY = "SELECT * FROM orders WHERE employeeId = ?";
+    private static final String FIND_ALL_ORDERS_BY_VEHICLEID_QUERY = "SELECT * FROM orders WHERE vehicleId = ?";
+    private static final String FIND_ALL_ORDERS_BY_STATUS_QUERY = "SELECT * FROM orders WHERE status = ?";
 
     public Order create(Order order){
         try (Connection conn = DbUtil.getConnection()){
@@ -142,6 +145,66 @@ public class OrderDao {
             List<Order> orders = new ArrayList<>();
             PreparedStatement statement = con.prepareStatement(FIND_ALL_ORDERS_BY_EMPLOYEEID_QUERY);
             statement.setInt(1, employeeId);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()){
+                Order order = new Order();
+                order.setId(resultSet.getInt("id"));
+                order.setAddDate(resultSet.getString("addDate"));
+                order.setRepairPlannedDate(resultSet.getString("repairPlannedDate"));
+                order.setRepairDate(resultSet.getString("repairDate"));
+                order.setEmployeeId(resultSet.getInt("employeeId"));
+                order.setProblemDescription(resultSet.getString("problemDescription"));
+                order.setRepairDescription(resultSet.getString("repairDescription"));
+                order.setStatus(Status.valueOf(resultSet.getString("status")));
+                order.setVehicleId(resultSet.getInt("vehicleId"));
+                order.setRepairCost(resultSet.getDouble("repairCost"));
+                order.setCarPartsCost(resultSet.getDouble("carPartsCost"));
+                order.setManHourCost(resultSet.getDouble("manHourCost"));
+                order.setManHourQuantity(resultSet.getInt("manHourQuantity"));
+                orders.add(order);
+            }
+            return orders;
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public List<Order> findAllOrdersByVehicleId(int vehicleId){
+        try (Connection con = DbUtil.getConnection()){
+            List<Order> orders = new ArrayList<>();
+            PreparedStatement statement = con.prepareStatement(FIND_ALL_ORDERS_BY_VEHICLEID_QUERY);
+            statement.setInt(1, vehicleId);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()){
+                Order order = new Order();
+                order.setId(resultSet.getInt("id"));
+                order.setAddDate(resultSet.getString("addDate"));
+                order.setRepairPlannedDate(resultSet.getString("repairPlannedDate"));
+                order.setRepairDate(resultSet.getString("repairDate"));
+                order.setEmployeeId(resultSet.getInt("employeeId"));
+                order.setProblemDescription(resultSet.getString("problemDescription"));
+                order.setRepairDescription(resultSet.getString("repairDescription"));
+                order.setStatus(Status.valueOf(resultSet.getString("status")));
+                order.setVehicleId(resultSet.getInt("vehicleId"));
+                order.setRepairCost(resultSet.getDouble("repairCost"));
+                order.setCarPartsCost(resultSet.getDouble("carPartsCost"));
+                order.setManHourCost(resultSet.getDouble("manHourCost"));
+                order.setManHourQuantity(resultSet.getInt("manHourQuantity"));
+                orders.add(order);
+            }
+            return orders;
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public List<Order> findAllOrdersByStatus(String status){
+        try (Connection con = DbUtil.getConnection()){
+            List<Order> orders = new ArrayList<>();
+            PreparedStatement statement = con.prepareStatement(FIND_ALL_ORDERS_BY_STATUS_QUERY);
+            statement.setString(1, status);
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()){
                 Order order = new Order();

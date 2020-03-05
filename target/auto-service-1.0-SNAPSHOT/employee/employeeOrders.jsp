@@ -45,7 +45,7 @@
         </tr>
     </c:forEach>
 </table>
-<%--<p class="add"><a href="/orderAdd">Add new</a></p>--%>
+<p class="add"><a href="/orderAdd">Dodaj zlecenie</a></p>
 <jsp:include page="/footer.jsp"/>
 </body>
 </html>
