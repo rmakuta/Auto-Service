@@ -1,10 +1,7 @@
 package pl.makuta.controller.customer;
 
 import pl.makuta.dao.CustomerDao;
-import pl.makuta.dao.EmployeeDao;
 import pl.makuta.dao.VehicleDao;
-import pl.makuta.model.Customer;
-import pl.makuta.model.Employee;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
