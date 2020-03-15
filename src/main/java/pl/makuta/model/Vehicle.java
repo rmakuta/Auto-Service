@@ -1,12 +1,14 @@
 package pl.makuta.model;
 
+import java.time.LocalDate;
+
 public class Vehicle {
     private int id;
     private String model;
     private String brand;
-    private int birth;
+    private LocalDate birth;
     private String regNumber;
-    private String nextServiceDate;
+    private LocalDate nextServiceDate;
     private int customerId;
 
     public int getId() {
@@ -33,12 +35,16 @@ public class Vehicle {
         this.brand = brand;
     }
 
-    public int getBirth() {
+    public LocalDate getBirth() {
         return birth;
     }
 
-    public void setBirth(int birth) {
-        this.birth = birth;
+    public void setBirth(String birth) {
+        if(birth == null){
+            this.birth = null;
+        } else {
+            this.birth = LocalDate.parse(birth);
+        }
     }
 
     public String getRegNumber() {
@@ -49,12 +55,16 @@ public class Vehicle {
         this.regNumber = regNumber;
     }
 
-    public String getNextServiceDate() {
+    public LocalDate getNextServiceDate() {
         return nextServiceDate;
     }
 
     public void setNextServiceDate(String nextServiceDate) {
-        this.nextServiceDate = nextServiceDate;
+        if(nextServiceDate == null){
+            this.nextServiceDate = null;
+        } else {
+            this.nextServiceDate = LocalDate.parse(nextServiceDate);
+        }
     }
 
     public int getCustomerId() {

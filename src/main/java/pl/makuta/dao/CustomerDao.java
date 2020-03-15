@@ -3,7 +3,6 @@ package pl.makuta.dao;
 import pl.makuta.DbUtil;
 import pl.makuta.model.Customer;
 
-import java.awt.image.AreaAveragingScaleFilter;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +20,11 @@ public class CustomerDao {
             PreparedStatement statement = conn.prepareStatement(CREATE_CUSTOMER_QUERY, Statement.RETURN_GENERATED_KEYS);
             statement.setString(1, customer.getName());
             statement.setString(2, customer.getSurname());
-            statement.setString(3, customer.getBirthDate());
+            if(customer.getBirthDate() != null){
+                statement.setDate(3, Date.valueOf(customer.getBirthDate()));
+            } else {
+                statement.setDate(3, null);
+            }
             statement.executeUpdate();
             ResultSet resultSet = statement.getGeneratedKeys();
             if(resultSet.next()){
@@ -58,7 +61,11 @@ public class CustomerDao {
             PreparedStatement statement = conn.prepareStatement(UPDATE_CUSTOMER_QUERY);
             statement.setString(1, customer.getName());
             statement.setString(2, customer.getSurname());
-            statement.setString(3, customer.getBirthDate());
+            if(customer.getBirthDate() != null){
+                statement.setDate(3, Date.valueOf(customer.getBirthDate()));
+            } else {
+                statement.setDate(3, null);
+            }
             statement.setInt(4, customer.getId());
             statement.executeUpdate();
         }catch (SQLException e){

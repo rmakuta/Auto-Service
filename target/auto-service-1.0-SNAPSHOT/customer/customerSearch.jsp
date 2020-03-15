@@ -7,11 +7,6 @@
 <body>
 <jsp:include page="/header.jsp"/>
 <h2>Klienci</h2>
-<%--<form action="/customerSearch" method="post">--%>
-<%--    <p>Nazwisko: <input name="surname">--%>
-<%--        <button type="submit">szukaj</button>--%>
-<%--    </p>--%>
-<%--</form>--%>
 <table>
     <tr>
         <th>Imię</th>
@@ -33,7 +28,6 @@
         </tr>
     </c:forEach>
 </table>
-<%--<p class="add"><a href="/customer/customerAdd.jsp">Dodaj nowego klienta</a></p>--%>
 <jsp:include page="/footer.jsp"/>
 </body>
 </html>

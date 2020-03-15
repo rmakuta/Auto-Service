@@ -44,9 +44,9 @@ public class OrderAdd extends HttpServlet {
         Order order = new Order();
         EmployeeDao employeeDao = new EmployeeDao();
         Employee employee = employeeDao.read(Integer.parseInt(req.getParameter("employeeId")));
-//        order.setAddDate(req.getParameter("addDate"));
-        order.setRepairPlannedDate(req.getParameter("repairPlannedDated"));
-        order.setRepairDate("");
+        if(!req.getParameter("repairPlannedDate").isEmpty()){
+            order.setRepairPlannedDate(req.getParameter("repairPlannedDate"));
+        }
         order.setEmployeeId(Integer.parseInt(req.getParameter("employeeId")));
         order.setProblemDescription(req.getParameter("problemDescription"));
         order.setRepairDescription(req.getParameter("repairDescription"));

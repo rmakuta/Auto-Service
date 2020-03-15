@@ -4,7 +4,6 @@ import pl.makuta.DbUtil;
 import pl.makuta.model.Order;
 import pl.makuta.model.Status;
 
-import java.net.ConnectException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,9 +25,17 @@ public class OrderDao {
     public Order create(Order order){
         try (Connection conn = DbUtil.getConnection()){
             PreparedStatement statement = conn.prepareStatement(CREAT_ORDER_QUERY, Statement.RETURN_GENERATED_KEYS);
-            statement.setString(1, order.getAddDate());
-            statement.setString(2, order.getRepairPlannedDate());
-            statement.setString(3, order.getRepairDate());
+            statement.setDate(1, Date.valueOf(order.getAddDate()));
+            if(order.getRepairPlannedDate() != null){
+                statement.setDate(2, Date.valueOf(order.getRepairPlannedDate()));
+            }else {
+                statement.setDate(2, null);
+            }
+            if(order.getRepairDate() != null){
+                statement.setDate(3, Date.valueOf(order.getRepairDate()));
+            }else {
+                statement.setDate(3, null);
+            }
             statement.setInt(4, order.getEmployeeId());
             statement.setString(5, order.getProblemDescription());
             statement.setString(6, order.getRepairDescription());
@@ -59,7 +66,6 @@ public class OrderDao {
                 Order order = new Order();
                 order.setId(resultSet.getInt("id"));
                 order.setAddDate(resultSet.getString("addDate"));
-                order.setAddDate(resultSet.getString("addDate"));
                 order.setRepairPlannedDate(resultSet.getString("repairPlannedDate"));
                 order.setRepairDate(resultSet.getString("repairDate"));
                 order.setEmployeeId(resultSet.getInt("employeeId"));
@@ -82,9 +88,17 @@ public class OrderDao {
     public void update(Order order){
         try (Connection con = DbUtil.getConnection()){
             PreparedStatement statement = con.prepareStatement(UPDATE_ORDER_QUERY);
-            statement.setString(1, order.getAddDate());
-            statement.setString(2, order.getRepairPlannedDate());
-            statement.setString(3, order.getRepairDate());
+            statement.setDate(1, Date.valueOf(order.getAddDate()));
+            if(order.getRepairPlannedDate() != null){
+                statement.setDate(2, Date.valueOf(order.getRepairPlannedDate()));
+            }else {
+                statement.setDate(2, null);
+            }
+            if(order.getRepairDate() != null){
+                statement.setDate(3, Date.valueOf(order.getRepairDate()));
+            }else {
+                statement.setString(3, null);
+            }
             statement.setInt(4, order.getEmployeeId());
             statement.setString(5, order.getProblemDescription());
             statement.setString(6, order.getRepairDescription());

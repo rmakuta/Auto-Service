@@ -22,9 +22,17 @@ public class VehicleDao {
             PreparedStatement statement = conn.prepareStatement(CREATE_VEHICLE_QUERY, Statement.RETURN_GENERATED_KEYS);
             statement.setString(1, vehicle.getModel());
             statement.setString(2, vehicle.getBrand());
-            statement.setInt(3, vehicle.getBirth());
+            if(vehicle.getBirth() != null){
+                statement.setDate(3, Date.valueOf(vehicle.getBirth()));
+            } else {
+                statement.setDate(3, null);
+            }
             statement.setString(4, vehicle.getRegNumber());
-            statement.setString(5, vehicle.getNextServiceDate());
+            if(vehicle.getNextServiceDate() != null){
+                statement.setDate(5, Date.valueOf(vehicle.getNextServiceDate()));
+            } else {
+                statement.setDate(5, null);
+            }
             statement.setInt(6, vehicle.getCustomerId());
             statement.executeUpdate();
             ResultSet resultSet = statement.getGeneratedKeys();
@@ -48,7 +56,7 @@ public class VehicleDao {
                 vehicle.setId(resultSet.getInt("id"));
                 vehicle.setModel(resultSet.getString("model"));
                 vehicle.setBrand(resultSet.getString("brand"));
-                vehicle.setBirth(resultSet.getInt("birth"));
+                vehicle.setBirth(resultSet.getString("birth"));
                 vehicle.setRegNumber(resultSet.getString("regNumber"));
                 vehicle.setNextServiceDate(resultSet.getString("nextServiceDate"));
                 vehicle.setCustomerId(resultSet.getInt("customerId"));
@@ -65,9 +73,17 @@ public class VehicleDao {
             PreparedStatement statement = conn.prepareStatement(UPDATE_VEHICLE_QUERY);
             statement.setString(1, vehicle.getModel());
             statement.setString(2, vehicle.getBrand());
-            statement.setInt(3, vehicle.getBirth());
+            if(vehicle.getBirth() != null){
+                statement.setDate(3, Date.valueOf(vehicle.getBirth()));
+            } else {
+                statement.setDate(3, null);
+            }
             statement.setString(4, vehicle.getRegNumber());
-            statement.setString(5, vehicle.getNextServiceDate());
+            if(vehicle.getNextServiceDate() != null){
+                statement.setDate(5, Date.valueOf(vehicle.getNextServiceDate()));
+            } else {
+                statement.setDate(5, null);
+            }
             statement.setInt(6, vehicle.getCustomerId());
             statement.setInt(7, vehicle.getId());
             statement.executeUpdate();
@@ -96,7 +112,7 @@ public class VehicleDao {
                 vehicle.setId(resultSet.getInt("id"));
                 vehicle.setModel(resultSet.getString("model"));
                 vehicle.setBrand(resultSet.getString("brand"));
-                vehicle.setBirth(resultSet.getInt("birth"));
+                vehicle.setBirth(resultSet.getString("birth"));
                 vehicle.setRegNumber(resultSet.getString("regNumber"));
                 vehicle.setNextServiceDate(resultSet.getString("nextServiceDate"));
                 vehicle.setCustomerId(resultSet.getInt("customerId"));
@@ -120,7 +136,7 @@ public class VehicleDao {
                 vehicle.setId(resultSet.getInt("id"));
                 vehicle.setModel(resultSet.getString("model"));
                 vehicle.setBrand(resultSet.getString("brand"));
-                vehicle.setBirth(resultSet.getInt("birth"));
+                vehicle.setBirth(resultSet.getString("birth"));
                 vehicle.setRegNumber(resultSet.getString("regNumber"));
                 vehicle.setNextServiceDate(resultSet.getString("nextServiceDate"));
                 vehicle.setCustomerId(resultSet.getInt("customerId"));

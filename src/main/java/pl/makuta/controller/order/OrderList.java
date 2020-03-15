@@ -3,7 +3,6 @@ package pl.makuta.controller.order;
 import pl.makuta.dao.EmployeeDao;
 import pl.makuta.dao.OrderDao;
 import pl.makuta.dao.VehicleDao;
-import pl.makuta.model.Employee;
 import pl.makuta.model.Order;
 
 import javax.servlet.ServletException;

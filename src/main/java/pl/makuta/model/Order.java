@@ -1,13 +1,12 @@
 package pl.makuta.model;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+import java.time.LocalDate;
 
 public class Order {
     private int id;
-    private String addDate;
-    private String repairPlannedDate;
-    private String repairDate;
+    private LocalDate addDate;
+    private LocalDate repairPlannedDate;
+    private LocalDate repairDate;
     private int employeeId;
     private String problemDescription;
     private String repairDescription;
@@ -19,7 +18,9 @@ public class Order {
     private int manHourQuantity;
 
     public Order() {
-        setAdoptionDate();
+        this.addDate = LocalDate.now();
+        this.repairPlannedDate = null;
+        this.repairDate = null;
     }
 
     public int getId() {
@@ -30,34 +31,36 @@ public class Order {
         this.id = id;
     }
 
-    public String getAddDate() {
+    public LocalDate getAddDate() {
         return addDate;
     }
 
     public void setAddDate(String addDate) {
-        this.addDate = addDate;
+        this.addDate = LocalDate.parse(addDate);
     }
 
-    public void setAdoptionDate(){
-        LocalDateTime createdDateTime = LocalDateTime.now();
-        DateTimeFormatter pattern = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        this.addDate = createdDateTime.format(pattern);
-    }
-
-    public String getRepairPlannedDate() {
+    public LocalDate getRepairPlannedDate() {
         return repairPlannedDate;
     }
 
     public void setRepairPlannedDate(String repairPlannedDate) {
-        this.repairPlannedDate = repairPlannedDate;
+        if(repairPlannedDate == null){
+            this.repairPlannedDate = null;
+        }else {
+            this.repairPlannedDate = LocalDate.parse(repairPlannedDate);
+        }
     }
 
-    public String getRepairDate() {
+    public LocalDate getRepairDate() {
         return repairDate;
     }
 
     public void setRepairDate(String repairDate) {
-        this.repairDate = repairDate;
+        if(repairDate == null){
+            this.repairDate = null;
+        }else {
+            this.repairDate = LocalDate.parse(repairDate);
+        }
     }
 
     public int getEmployeeId() {

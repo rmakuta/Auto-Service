@@ -53,8 +53,12 @@ public class OrderEdit extends HttpServlet {
         Employee employee = employeeDao.read(Integer.parseInt(req.getParameter("employeeId")));
         order.setId(Integer.parseInt(req.getParameter("id")));
         order.setAddDate(req.getParameter("addDate"));
-        order.setRepairPlannedDate(req.getParameter("repairPlannedDated"));
-        order.setRepairDate("");
+        if(!req.getParameter("repairPlannedDate").isEmpty()){
+            order.setRepairPlannedDate(req.getParameter("repairPlannedDate"));
+        }
+        if(!req.getParameter("repairDate").isEmpty()){
+            order.setRepairDate(req.getParameter("repairDate"));
+        }
         order.setEmployeeId(Integer.parseInt(req.getParameter("employeeId")));
         order.setProblemDescription(req.getParameter("problemDescription"));
         order.setRepairDescription(req.getParameter("repairDescription"));

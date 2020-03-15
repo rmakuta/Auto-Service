@@ -40,9 +40,13 @@ public class VehicleEdit extends HttpServlet {
         vehicle.setId(Integer.parseInt(req.getParameter("id")));
         vehicle.setModel(req.getParameter("model"));
         vehicle.setBrand(req.getParameter("brand"));
-        vehicle.setBirth(Integer.parseInt(req.getParameter("birth")));
+        if(!req.getParameter("birth").isEmpty()){
+            vehicle.setBirth(req.getParameter("birth"));
+        }
         vehicle.setRegNumber(req.getParameter("regNumber"));
-        vehicle.setNextServiceDate(req.getParameter("nextServiceDate"));
+        if(!req.getParameter("nextServiceDate").isEmpty()){
+            vehicle.setNextServiceDate(req.getParameter("nextServiceDate"));
+        }
         vehicle.setCustomerId(Integer.parseInt(req.getParameter("customerId")));
         vehicleDao.update(vehicle);
         resp.sendRedirect("/vehicleList");

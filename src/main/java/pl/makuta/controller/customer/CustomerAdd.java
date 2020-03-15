@@ -22,7 +22,9 @@ public class CustomerAdd extends HttpServlet {
         Customer customer = new Customer();
         customer.setName(req.getParameter("name"));
         customer.setSurname(req.getParameter("surname"));
-        customer.setBirthDate(req.getParameter("birthDate"));
+        if(!req.getParameter("birthDate").isEmpty()){
+            customer.setBirthDate(req.getParameter("birthDate"));
+        }
         customerDao.create(customer);
         resp.sendRedirect("/customerList");
     }

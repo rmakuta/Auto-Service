@@ -2,7 +2,6 @@ package pl.makuta.controller.customer;
 
 import pl.makuta.dao.CustomerDao;
 import pl.makuta.model.Customer;
-import pl.makuta.model.Employee;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -35,7 +34,9 @@ public class CustomerEdit extends HttpServlet {
         customer.setId(Integer.parseInt(req.getParameter("id")));
         customer.setName(req.getParameter("name"));
         customer.setSurname(req.getParameter("surname"));
-        customer.setBirthDate(req.getParameter("birthDate"));
+        if(!req.getParameter("birthDate").isEmpty()){
+            customer.setBirthDate(req.getParameter("birthDate"));
+        }
         customerDao.update(customer);
         resp.sendRedirect("/customerList");
     }

@@ -1,10 +1,12 @@
 package pl.makuta.model;
 
+import java.time.LocalDate;
+
 public class Customer {
     private int id;
     private String name;
     private String surname;
-    private String birthDate;
+    private LocalDate birthDate;
 
     public int getId() {
         return id;
@@ -30,12 +32,16 @@ public class Customer {
         this.surname = surname;
     }
 
-    public String getBirthDate() {
+    public LocalDate getBirthDate() {
         return birthDate;
     }
 
     public void setBirthDate(String birthDate) {
-        this.birthDate = birthDate;
+        if(birthDate == null){
+            this.birthDate = null;
+        } else {
+            this.birthDate = LocalDate.parse(birthDate);
+        }
     }
 
     @Override

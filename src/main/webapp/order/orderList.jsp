@@ -12,7 +12,7 @@
         <th>Data</th>
         <th>Planowana data naprawy</th>
         <th>Data naprawy</th>
-        <th>Prawcownik</th>
+        <th>Pracownik</th>
         <th>Opis problemu</th>
         <th>Opis naprawy</th>
         <th>Status</th>
