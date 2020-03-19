@@ -9,9 +9,9 @@
     <jsp:include page="/header.jsp"/>
     <h2>Edycja zamówienia</h2>
     <form action="/orderEdit" method="post">
-        <p>Data przyjęcia: <input name="addDate" value="${order.addDate}"></p>
-        <p>Planowana data naprawy: <input name="repairPlannedDate" value="${order.repairPlannedDate}"></p>
-        <p>Data naprawy: <input name="repairDate" value="${order.repairDate}"></p>
+        <p>Data przyjęcia: <input type="date" name="addDate" value="${order.addDate}"></p>
+        <p>Planowana data naprawy: <input type="date" name="repairPlannedDate" value="${order.repairPlannedDate}"></p>
+        <p>Data naprawy: <input type="date" name="repairDate" value="${order.repairDate}"></p>
         <p>Pracownik:
             <select name="employeeId">
                 <c:forEach items="${employees}" var="employee">

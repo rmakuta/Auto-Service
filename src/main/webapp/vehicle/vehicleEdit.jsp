@@ -11,9 +11,9 @@
     <form action="/vehicleEdit" method="post">
         <p>Model: <input name="model" value="${vehicle.model}"></p>
         <p>Marka: <input name="brand" value="${vehicle.brand}"></p>
-        <p>Rok produkcji: <input name="birth" value="${vehicle.birth}"></p>
+        <p>Rok produkcji: <input type="date" name="birth" value="${vehicle.birth}"></p>
         <p>Numer rejestracyjny: <input name="regNumber" value="${vehicle.regNumber}"></p>
-        <p>Data następnego przeglądu: <input name="nextServiceDate" value="${vehicle.nextServiceDate}"></p>
+        <p>Data następnego przeglądu: <input type="date" name="nextServiceDate" value="${vehicle.nextServiceDate}"></p>
         <p>Właściciel:
             <select name="customerId">
                 <c:forEach items="${customers}" var="customer">

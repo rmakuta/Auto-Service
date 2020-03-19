@@ -11,7 +11,7 @@
     <form action="/customerAdd" method="post">
         <p>Imię: <input name="name"></p>
         <p>Nazwisko: <input name="surname"></p>
-        <p>Data urodzin: <input name="birthDate"></p>
+        <p>Data urodzin: <input type="date" name="birthDate"></p>
         <p>
             <button type="submit">Dodaj</button>
         </p>

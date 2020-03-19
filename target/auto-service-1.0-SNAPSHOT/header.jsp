@@ -5,5 +5,5 @@
     <a href="/orderList">Zlecenia</a>
     <a href="/customerList">Klienci</a>
     <a href="/vehicleList">Pojazdy</a>
-    <a href="/">Raporty</a>
+    <a href="/report/reportList.jsp">Raporty</a>
 </header>

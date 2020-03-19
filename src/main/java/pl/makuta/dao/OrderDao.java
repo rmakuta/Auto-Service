@@ -5,8 +5,11 @@ import pl.makuta.model.Order;
 import pl.makuta.model.Status;
 
 import java.sql.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class OrderDao {
     private static final String CREAT_ORDER_QUERY = "INSERT INTO orders(addDate, repairPlannedDate, repairDate, " +
@@ -17,10 +20,12 @@ public class OrderDao {
             "employeeId = ?, problemDescription = ?, repairDescription = ?, status = ?, vehicleId = ?, repairCost = ?, " +
             "carPartsCost = ?, manHourCost = ?, manHourQuantity = ? WHERE id = ?";
     private static final String DELETE_ORDER_QUERY = "DELETE FROM orders WHERE id = ?";
-    private static final String FIND_ALL_ORDERS_QUERY = "SELECT * FROM orders";
+    private static final String FIND_ALL_ORDERS_QUERY = "SELECT * FROM orders ORDER BY addDate DESC";
     private static final String FIND_ALL_ORDERS_BY_EMPLOYEEID_QUERY = "SELECT * FROM orders WHERE employeeId = ?";
     private static final String FIND_ALL_ORDERS_BY_VEHICLEID_QUERY = "SELECT * FROM orders WHERE vehicleId = ?";
     private static final String FIND_ALL_ORDERS_BY_STATUS_QUERY = "SELECT * FROM orders WHERE status = ?";
+    private static final String FIND_TEST = "SELECT employeeId, SUM(manHourQuantity) AS number FROM orders " +
+            "WHERE addDate >= ? AND addDate <= ?  GROUP BY employeeId";
 
     public Order create(Order order){
         try (Connection conn = DbUtil.getConnection()){
@@ -238,6 +243,23 @@ public class OrderDao {
                 orders.add(order);
             }
             return orders;
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public Map<Integer, Integer> findTest(String start, String finish){
+        try (Connection con = DbUtil.getConnection()){
+            Map<Integer, Integer> map = new HashMap<>();
+            PreparedStatement statement = con.prepareStatement(FIND_TEST);
+            statement.setDate(1, Date.valueOf(start));
+            statement.setDate(2, Date.valueOf(finish));
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()){
+                map.put(resultSet.getInt("employeeId"), resultSet.getInt("number"));
+            }
+            return map;
         }catch (SQLException e){
             e.printStackTrace();
         }

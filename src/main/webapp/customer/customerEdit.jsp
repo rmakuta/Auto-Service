@@ -11,7 +11,7 @@
     <form action="/customerEdit" method="post">
         <p>Imię: <input name="name" value="${customer.name}"></p>
         <p>Nazwisko: <input name="surname" value="${customer.surname}"></p>
-        <p>Data urodzin: <input name="birthDate" value="${customer.birthDate}"></p>
+        <p>Data urodzin: <input type="date" name="birthDate" value="${customer.birthDate}"></p>
         <input type="hidden" name="id" value="${customer.id}">
         <p>
             <button type="submit">zapisz</button>

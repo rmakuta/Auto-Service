@@ -10,7 +10,7 @@
     <h2>Zlecenie naprawy</h2>
     <form action="/orderAdd" method="post">
 <%--        <p>Data: <input name="addDate"></p>--%>
-        <p>Planowana data naprawy: <input name="repairPlannedDate"></p>
+        <p>Planowana data naprawy: <input type="date" name="repairPlannedDate"></p>
 <%--        <p>Data naprawy: <input name="repairDate"></p>--%>
         <p>Pracownik:
             <select name="employeeId">

@@ -10,11 +10,13 @@
     <tr>
         <th>Data przyjęcia</th>
         <th>Opis problemu</th>
+        <th></th>
     </tr>
     <c:forEach items="${orders}" var="order">
         <tr>
             <td>${order.addDate}</td>
             <td>${order.problemDescription}</td>
+            <td><a href="/orderEdit?id=${order.id}">Edit</a></td>
         </tr>
     </c:forEach>
 </table>
