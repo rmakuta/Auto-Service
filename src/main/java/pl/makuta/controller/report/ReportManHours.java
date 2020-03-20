@@ -22,7 +22,7 @@ public class ReportManHours extends HttpServlet {
 
         EmployeeDao employeeDao = new EmployeeDao();
         Map<String, Integer> mapNew = new HashMap<>();
-        for(Map.Entry<Integer, Integer> map: new OrderDao().findTest(req.getParameter("start"),
+        for(Map.Entry<Integer, Integer> map: new OrderDao().findManHours(req.getParameter("start"),
                 req.getParameter("finish")).entrySet()){
             int i = map.getKey();
             String name = employeeDao.read(i).getName();

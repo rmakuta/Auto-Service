@@ -20,7 +20,7 @@
     </li>
     <li>
         <p><b>Zyski z działalności za okres:</b>
-            <form method="get" action="/reportManHours">
+            <form method="get" action="/reportOperatingProfits">
                 od <input type="date" name="start">
                 do <input type="date" name="finish">
                 <input type="submit" value="pobierz">

@@ -1,11 +1,11 @@
 package pl.makuta.dao;
 
+import org.apache.taglibs.standard.lang.jstl.test.beans.PublicBean1;
 import pl.makuta.DbUtil;
 import pl.makuta.model.Order;
 import pl.makuta.model.Status;
 
 import java.sql.*;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -24,8 +24,11 @@ public class OrderDao {
     private static final String FIND_ALL_ORDERS_BY_EMPLOYEEID_QUERY = "SELECT * FROM orders WHERE employeeId = ?";
     private static final String FIND_ALL_ORDERS_BY_VEHICLEID_QUERY = "SELECT * FROM orders WHERE vehicleId = ?";
     private static final String FIND_ALL_ORDERS_BY_STATUS_QUERY = "SELECT * FROM orders WHERE status = ?";
-    private static final String FIND_TEST = "SELECT employeeId, SUM(manHourQuantity) AS number FROM orders " +
+    private static final String FIND_MAN_HOURS = "SELECT employeeId, SUM(manHourQuantity) AS number FROM orders " +
             "WHERE addDate >= ? AND addDate <= ?  GROUP BY employeeId";
+    private static final String FIND_OPERATING_PROFITS = "SELECT SUM(repairCost) AS repairCost, SUM(carPartsCost) AS carPartsCost, SUM(manHourCost) AS manHourCost, " +
+            "SUM(repairCost) - SUM(carPartsCost) - SUM(manHourCost) AS operatingProfit FROM orders " +
+            "WHERE addDate >= ? AND addDate <= ?";
 
     public Order create(Order order){
         try (Connection conn = DbUtil.getConnection()){
@@ -46,7 +49,7 @@ public class OrderDao {
             statement.setString(6, order.getRepairDescription());
             statement.setString(7, order.getStatus().name());
             statement.setInt(8, order.getVehicleId());
-            statement.setDouble(9, order.getCarPartsCost() + (order.getManHourCost() * order.getManHourQuantity()));
+            statement.setDouble(9, (order.getCarPartsCost() + (order.getManHourCost() * order.getManHourQuantity()))*1.20);
             statement.setDouble(10, order.getCarPartsCost());
             statement.setDouble(11, order.getManHourCost());
             statement.setInt(12, order.getManHourQuantity());
@@ -109,7 +112,7 @@ public class OrderDao {
             statement.setString(6, order.getRepairDescription());
             statement.setString(7, order.getStatus().name());
             statement.setInt(8, order.getVehicleId());
-            statement.setDouble(9, order.getCarPartsCost() + (order.getManHourCost() * order.getManHourQuantity()));
+            statement.setDouble(9, (order.getCarPartsCost() + (order.getManHourCost() * order.getManHourQuantity()))*1.20);
             statement.setDouble(10, order.getCarPartsCost());
             statement.setDouble(11, order.getManHourCost());
             statement.setInt(12, order.getManHourQuantity());
@@ -249,10 +252,10 @@ public class OrderDao {
         return null;
     }
 
-    public Map<Integer, Integer> findTest(String start, String finish){
+    public Map<Integer, Integer> findManHours(String start, String finish){
         try (Connection con = DbUtil.getConnection()){
             Map<Integer, Integer> map = new HashMap<>();
-            PreparedStatement statement = con.prepareStatement(FIND_TEST);
+            PreparedStatement statement = con.prepareStatement(FIND_MAN_HOURS);
             statement.setDate(1, Date.valueOf(start));
             statement.setDate(2, Date.valueOf(finish));
             ResultSet resultSet = statement.executeQuery();
@@ -260,6 +263,26 @@ public class OrderDao {
                 map.put(resultSet.getInt("employeeId"), resultSet.getInt("number"));
             }
             return map;
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public List<Double> findOperatingProfits(String start, String finish){
+        try (Connection con = DbUtil.getConnection()){
+            List<Double> operatingProfits = new ArrayList<>();
+            PreparedStatement statement = con.prepareStatement(FIND_OPERATING_PROFITS);
+            statement.setDate(1, Date.valueOf(start));
+            statement.setDate(2, Date.valueOf(finish));
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()){
+                operatingProfits.add(resultSet.getDouble("repairCost"));
+                operatingProfits.add(resultSet.getDouble("carPartsCost"));
+                operatingProfits.add(resultSet.getDouble("manHourCost"));
+                operatingProfits.add(resultSet.getDouble("operatingProfit"));
+            }
+            return operatingProfits;
         }catch (SQLException e){
             e.printStackTrace();
         }
