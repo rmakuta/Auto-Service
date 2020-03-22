@@ -5,21 +5,40 @@
     <title>Auto service</title>
 </head>
 <body>
-<jsp:include page="/header.jsp"/>
-<table>
-    <tr>
-        <th>Data przyjęcia</th>
-        <th>Opis problemu</th>
-        <th></th>
-    </tr>
-    <c:forEach items="${orders}" var="order">
-        <tr>
-            <td>${order.addDate}</td>
-            <td>${order.problemDescription}</td>
-            <td><a href="/orderEdit?id=${order.id}">Edit</a></td>
-        </tr>
-    </c:forEach>
-</table>
-<jsp:include page="/footer.jsp"/>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+            <jsp:include page="/header.jsp"/>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <p></p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <table class="table">
+                <tr>
+                    <th>Data przyjęcia</th>
+                    <th>Opis problemu</th>
+                    <th></th>
+                </tr>
+                <c:forEach items="${orders}" var="order">
+                    <tr>
+                        <td>${order.addDate}</td>
+                        <td>${order.problemDescription}</td>
+                        <td><a href="/orderEdit?id=${order.id}">Edit</a></td>
+                    </tr>
+                </c:forEach>
+            </table>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <jsp:include page="/footer.jsp"/>
+        </div>
+    </div>
+</div>
 </body>
 </html>
