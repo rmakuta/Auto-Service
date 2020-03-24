@@ -21,6 +21,7 @@ public class EmployeeEdit extends HttpServlet {
         EmployeeDao employeeDao = new EmployeeDao();
         Employee employee = employeeDao.read(Integer.parseInt(req.getParameter("id")));
         req.setAttribute("employee", employee);
+        System.out.println(employee.getName() + " " + employee.getSurname() + " " + employee.getPhoneNumber());
         req.getRequestDispatcher("/employee/employeeEdit.jsp").forward(req, resp);
     }
 

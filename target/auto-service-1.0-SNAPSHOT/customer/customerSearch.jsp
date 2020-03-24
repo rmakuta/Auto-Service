@@ -12,8 +12,8 @@
         </div>
     </div>
     <div class="row">
-        <div class="col">
-            <h4>Klienci</h4>
+        <div class="col px-4">
+            <p><h5>Klienci</h5></p>
         </div>
     </div>
     <div class="row">
@@ -31,10 +31,10 @@
                         <td>${customer.surname}</td>
                         <td>${customer.birthDate}</td>
                         <td>
-                            <a href="/customerEdit?id=${customer.id}">Edytuj</a>
-                            <a href="/customerDelete?id=${customer.id}">Usuń</a>
-                            <a href="/customerVehicles?id=${customer.id}">Pojazdy</a>
-                            <a href="/customerOrders?id=${customer.id}">Zlecenia</a>
+                            <a href="/customerEdit?id=${customer.id}" class="text-info">Edytuj</a>
+                            <a href="/customerDelete?id=${customer.id}" class="text-info">Usuń</a>
+                            <a href="/customerVehicles?id=${customer.id}" class="text-info">Pojazdy</a>
+                            <a href="/customerOrders?id=${customer.id}" class="text-info">Zlecenia</a>
                         </td>
                     </tr>
                 </c:forEach>

@@ -12,8 +12,8 @@
         </div>
     </div>
     <div class="row">
-        <div class="col">
-            <h4>Raport: roboczogodziny</h4>
+        <div class="col px-4">
+            <p><h5>Raport: roboczogodziny</h5></p>
         </div>
     </div>
     <div class="row">

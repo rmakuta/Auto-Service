@@ -12,48 +12,60 @@
         </div>
     </div>
     <div class="row">
-        <div class="col">
-            <h4>Zlecenie naprawy</h4>
+        <div class="col px-4">
+            <p><h5>Zlecenie naprawy</h5></p>
         </div>
     </div>
     <div class="row">
         <div class="col">
             <form action="/orderAdd" method="post">
-        <%--        <p>Data: <input name="addDate"></p>--%>
-                <p>Planowana data naprawy: <input type="date" name="repairPlannedDate"></p>
-        <%--        <p>Data naprawy: <input name="repairDate"></p>--%>
-                <p>Pracownik:
-                    <select name="employeeId">
+                <div class="form-group col-3">
+                    <label>Planowana data naprawy:</label>
+                    <input type="date" name="repairPlannedDate" class="form-control">
+                </div>
+                <div class="form-group col-3">
+                    <label>Pracownik:</label>
+                    <select name="employeeId" class="form-control">
                         <c:forEach items="${employees}" var="employee">
                             <option value="${employee.id}">${employee.name} ${employee.surname}</option>
                         </c:forEach>
                     </select>
-                </p>
-                <p>Opis problemu: <input name="problemDescription"></p>
-                <p>Opis naprawy: <input name="repairDescription"></p>
-                <p>Status:
-                    <select name="status">
+                </div>
+                <div class="form-group col-3">
+                    <label>Opis problemu:</label>
+                    <input name="problemDescription" class="form-control">
+                </div>
+                <div class="form-group col-3">
+                    <label>Opis naprawy:</label>
+                    <input name="repairDescription" class="form-control">
+                </div>
+                <div class="form-group col-3">
+                    <label>Status:</label>
+                    <select name="status" class="form-control">
                         <c:forEach items="${statuses}" var="status">
                             <option value="${status.name()}">${status.getDesc()} </option>
                         </c:forEach>
                     </select>
-                </p>
-                <p>Samochód:
-                    <select name="vehicleId">
+                </div>
+                <div class="form-group col-3">
+                    <label>Samochód:</label>
+                    <select name="vehicleId" class="form-control">
                         <c:forEach items="${vehicles}" var="vehicle">
                             <option value="${vehicle.id}">${vehicle.getModel()} ${vehicle.getBrand()} ${vehicle.getRegNumber()}</option>
                         </c:forEach>
                     </select>
-                </p>
-        <%--        <p>Koszt naprawy: <input name="repairCost"></p>--%>
-                <p>Koszt części: <input name="carPartsCost"></p>
-        <%--        <p>Koszt roboczogodziny: ${employee.manHourCost}--%>
-        <%--            <input name="manHourCost">--%>
-        <%--        </p>--%>
-                <p>Ilość roboczogodzin: <input name="manHourQuantity"></p>
-                <p>
-                    <button type="submit">Add</button>
-                </p>
+                </div>
+                <div class="form-group col-3">
+                    <label>Koszt części:</label>
+                    <input name="carPartsCost" class="form-control">
+                </div>
+                <div class="form-group col-3">
+                    <label>Ilość roboczogodzin:</label>
+                    <input name="manHourQuantity" class="form-control">
+                </div>
+                <div class="form-group col-3">
+                    <button type="submit" class="btn btn-info btn-sm">Dodaj</button>
+                </div>
             </form>
         </div>
     </div>

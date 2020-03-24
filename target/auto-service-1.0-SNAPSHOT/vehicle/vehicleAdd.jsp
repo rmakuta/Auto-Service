@@ -12,28 +12,44 @@
         </div>
     </div>
     <div class="row">
-        <div class="col">
-            <h4>Dodanie pojazdu</h4>
+        <div class="col px-4">
+            <p><h5>Dodanie pojazdu</h5></p>
         </div>
     </div>
     <div class="row">
         <div class="col">
             <form action="/vehicleAdd" method="post">
-                <p>Model: <input name="model"></p>
-                <p>Marka: <input name="brand"></p>
-                <p>Rok produkcji: <input type="date" name="birth"></p>
-                <p>Numer rejestracyjny: <input name="regNumber"></p>
-                <p>Data następnego przeglądu: <input type="date" name="nextServiceDate"></p>
-                <p>Właściciel:
-                    <select name="customerId">
+                <div class="form-group col-3">
+                    <label>Marka:</label>
+                    <input name="brand" class="form-control">
+                </div>
+                <div class="form-group col-3">
+                    <label>Model:</label>
+                    <input name="model" class="form-control">
+                </div>
+                <div class="form-group col-3">
+                    <label>Rok produkcji:</label>
+                    <input type="date" name="birth" class="form-control">
+                </div>
+                <div class="form-group col-3">
+                    <label>Numer rejestracyjny:</label>
+                    <input name="regNumber" class="form-control">
+                </div>
+                <div class="form-group col-3">
+                    <label>Data następnego przeglądu:</label>
+                    <input type="date" name="nextServiceDate" class="form-control">
+                </div>
+                <div class="form-group col-3">
+                    <label>Właściciel:</label>
+                    <select name="customerId" class="form-control">
                         <c:forEach items="${customers}" var="customer">
                             <option value="${customer.id}">${customer.name} ${customer.surname}</option>
                         </c:forEach>
                     </select>
-                </p>
-                <p>
-                    <button type="submit">dodaj</button>
-                </p>
+                </div>
+                <div class="form-group col-3">
+                    <button type="submit" class="btn btn-info btn-sm">Dodaj</button>
+                </div>
             </form>
         </div>
     </div>

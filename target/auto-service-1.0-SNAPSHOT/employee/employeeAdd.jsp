@@ -12,22 +12,40 @@
         </div>
     </div>
     <div class="row">
-        <div class="col">
-            <h4>Pracownik</h4>
+        <div class="col px-4">
+            <p><h5>Pracownik</h5></p>
         </div>
     </div>
     <div class="row">
         <div class="col">
             <form action="/employeeAdd" method="post">
-                <p>Name: <input name="name"></p>
-                <p>Surname: <input name="surname"></p>
-                <p>Address: <input name="address"></p>
-                <p>Phone number: <input name="phoneNumber"></p>
-                <p>Note: <input name="note"></p>
-                <p>Man-hour cost: <input name="manHourCost"></p>
-                <p>
-                    <button type="submit">Add</button>
-                </p>
+                <div class="form-group col-3">
+                    <label>Imię:</label>
+                    <input name="name" class="form-control" placeholder="Wpisz imię">
+                </div>
+                <div class="form-group col-3">
+                    <label>Nazwisko:</label>
+                    <input name="surname" class="form-control" placeholder="Wpisz nazwisko">
+                </div>
+                <div class="form-group col-3">
+                    <label>Adres:</label>
+                    <input name="address" class="form-control" placeholder="Wpisz adres">
+                </div>
+                <div class="form-group col-3">
+                    <label>Numer telefonu:</label>
+                    <input name="phoneNumber" class="form-control" placeholder="Wpisz numer telefonu"></p>
+                </div>
+                <div class="form-group col-3">
+                    <label>Notatka:</label>
+                    <input name="note" class="form-control"></p>
+                </div>
+                <div class="form-group col-3">
+                    <label>Koszt roboczogodziny:</label>
+                    <input name="manHourCost" class="form-control">
+                </div>
+                <div class="form-group col-3">
+                    <button type="submit" class="btn btn-info btn-sm">Dodaj</button>
+                </div>
             </form>
         </div>
     </div>

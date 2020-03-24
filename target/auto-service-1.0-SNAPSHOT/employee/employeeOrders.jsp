@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
     <title>Lista zleceń</title>
@@ -12,8 +13,8 @@
         </div>
     </div>
     <div class="row">
-        <div class="col">
-            <h4>Zlecenia pracownika: ${employee.getName()} ${employee.getSurname()}</h4>
+        <div class="col px-4">
+            <p><h5>Zlecenia pracownika: <strong>${employee.getName()} ${employee.getSurname()}</strong></h5></p>
         </div>
     </div>
     <div class="row">
@@ -23,7 +24,7 @@
                     <th>Data</th>
                     <th>Planowana data naprawy</th>
                     <th>Data naprawy</th>
-                    <th>Prawcownik</th>
+                    <th>Pracownik</th>
                     <th>Opis problemu</th>
                     <th>Opis naprawy</th>
                     <th>Status</th>
@@ -43,16 +44,16 @@
                         <td>${order.problemDescription}</td>
                         <td>${order.repairDescription}</td>
                         <td>${order.status.getDesc()}</td>
-                        <td>${vehicleDao.read(order.vehicleId).getModel()} ${vehicleDao.read(order.vehicleId).getBrand()}
-                                ${vehicleDao.read(order.vehicleId).getRegNumber()}
+                        <td>${vehicleDao.read(order.vehicleId).getBrand()} ${vehicleDao.read(order.vehicleId).getModel()}
+                                [${vehicleDao.read(order.vehicleId).getRegNumber()}]
                         </td>
-                        <td>${order.repairCost}</td>
-                        <td>${order.carPartsCost}</td>
-                        <td>${order.manHourCost}</td>
+                        <td><fmt:formatNumber type="currency">${order.repairCost}</fmt:formatNumber></td>
+                        <td><fmt:formatNumber type="currency">${order.carPartsCost}</fmt:formatNumber></td>
+                        <td><fmt:formatNumber type="currency">${order.manHourCost}</fmt:formatNumber></td>
                         <td>${order.manHourQuantity}</td>
                         <td>
-                            <a href="/orderEdit?id=${order.id}">Edit</a>
-                            <a href="/orderDelete?id=${order.id}">Delete</a>
+                            <a href="/orderEdit?id=${order.id}" class="text-info">Edytuj</a>
+                            <a href="/orderDelete?id=${order.id}" class="text-info">Usuń</a>
                         </td>
                     </tr>
                 </c:forEach>
@@ -61,7 +62,7 @@
     </div>
     <div class="row">
         <div class="col">
-            <p class="add"><a href="/orderAdd">Dodaj zlecenie</a></p>
+            <p><a class="btn btn-info btn-sm" href="/orderAdd">Dodaj nowe zlecenie</a></p>
         </div>
     </div>
     <div class="row">

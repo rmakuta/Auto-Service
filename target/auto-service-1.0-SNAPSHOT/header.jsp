@@ -11,22 +11,22 @@
     <nav class="navbar navbar-expand-sm bg-light">
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link" href="/">Strona główna</a>
+                <a class="nav-link text-info" href="/">Strona główna</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/orderList">Zlecenia</a>
+                <a class="nav-link text-info" href="/orderList">Zlecenia</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/employeeList">Pracownicy</a>
+                <a class="nav-link text-info" href="/employeeList">Pracownicy</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/customerList">Klienci</a>
+                <a class="nav-link text-info" href="/customerList">Klienci</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/vehicleList">Pojazdy</a>
+                <a class="nav-link text-info" href="/vehicleList">Pojazdy</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/report/reportList.jsp">Raporty</a>
+                <a class="nav-link text-info" href="/report/reportList.jsp">Raporty</a>
             </li>
         </ul>
     </nav>

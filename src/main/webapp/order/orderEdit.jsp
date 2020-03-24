@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
     <title>Zamówienie edycja</title>
@@ -12,45 +13,69 @@
         </div>
     </div>
     <div class="row">
-        <div class="col">
-            <h4>Edycja zamówienia</h4>
+        <div class="col px-4">
+            <p><h5>Edycja zamówienia</h5></p>
         </div>
     </div>
     <div class="row">
         <div class="col">
             <form action="/orderEdit" method="post">
-                <p>Data przyjęcia: <input type="date" name="addDate" value="${order.addDate}"></p>
-                <p>Planowana data naprawy: <input type="date" name="repairPlannedDate" value="${order.repairPlannedDate}"></p>
-                <p>Data naprawy: <input type="date" name="repairDate" value="${order.repairDate}"></p>
-                <p>Pracownik:
-                    <select name="employeeId">
+                <div class="form-group col-3">
+                    <label>Data przyjęcia:</label>
+                    <input type="date" name="addDate" value="${order.addDate}" class="form-control">
+                </div>
+                <div class="form-group col-3">
+                    <label>Planowana data naprawy:</label>
+                    <input type="date" name="repairPlannedDate" value="${order.repairPlannedDate}" class="form-control">
+                </div>
+                <div class="form-group col-3">
+                    <label>Data naprawy:</label>
+                    <input type="date" name="repairDate" value="${order.repairDate}" class="form-control">
+                </div>
+                <div class="form-group col-3">
+                    <label>Pracownik:</label>
+                    <select name="employeeId" class="form-control">
                         <c:forEach items="${employees}" var="employee">
                             <option value="${employee.id}" <c:if test="${order.employeeId == employee.id}">selected</c:if>>${employee.name} ${employee.surname}</option>
                         </c:forEach>
                     </select>
-                </p>
-                <p>Opis problemu: <input name="problemDescription" value="${order.problemDescription}"></p>
-                <p>Opis naprawy: <input name="repairDescription" value="${order.repairDescription}"></p>
-                <p>Status:
-                    <select name="status">
+                </div>
+                <div class="form-group col-3">
+                    <label>Opis problemu:</label>
+                    <input name="problemDescription" value="${order.problemDescription}" class="form-control">
+                </div>
+                <div class="form-group col-3">
+                    <label>Opis naprawy:</label>
+                    <input name="repairDescription" value="${order.repairDescription}" class="form-control">
+                </div>
+                <div class="form-group col-3">
+                    <label>Status:</label>
+                    <select name="status" class="form-control">
                         <c:forEach items="${statuses}" var="status">
                             <option value="${status.name()}" <c:if test="${order.status == status.name()}">selected</c:if>>${status.getDesc()} </option>
                         </c:forEach>
                     </select>
-                </p>
-                <p>Samochód:
-                    <select name="vehicleId">
+                </div>
+                <div class="form-group col-3">
+                    <label>Samochód:</label>
+                    <select name="vehicleId" class="form-control">
                         <c:forEach items="${vehicles}" var="vehicle">
-                            <option value="${vehicle.id}" <c:if test="${order.vehicleId == vehicle.id}">selected</c:if>>${vehicle.getModel()} ${vehicle.getBrand()} ${vehicle.getRegNumber()}</option>
+                            <option value="${vehicle.id}" <c:if test="${order.vehicleId == vehicle.id}">selected</c:if>>${vehicle.getBrand()} ${vehicle.getModel()} [${vehicle.getRegNumber()}]</option>
                         </c:forEach>
                     </select>
-                </p>
-                <p>Koszt części: <input name="carPartsCost" value="${order.carPartsCost}"></p>
-                <p>Ilość roboczogodzin: <input name="manHourQuantity" value="${order.manHourQuantity}"></p>
-                <input type="hidden" name="id" value="${order.id}">
-                <p>
-                    <button type="submit">zapisz</button>
-                </p>
+                </div>
+                <div class="form-group col-3">
+                    <label>Koszt części:</label>
+                    <input name="carPartsCost" value="${order.carPartsCost}" class="form-control">
+                </div>
+                <div class="form-group col-3">
+                    <label>Ilość roboczogodzin:</label>
+                    <input name="manHourQuantity" value="${order.manHourQuantity}" class="form-control">
+                </div>
+                <div class="form-group col-3">
+                    <input type="hidden" name="id" value="${order.id}">
+                    <button type="submit" class="btn btn-info btn-sm">Zapisz</button>
+                </div>
             </form>
         </div>
     </div>

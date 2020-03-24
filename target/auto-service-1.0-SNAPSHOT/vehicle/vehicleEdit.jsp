@@ -12,29 +12,45 @@
         </div>
     </div>
     <div class="row">
-        <div class="col">
-            <h4>Edycja pojazdu</h4>
+        <div class="col px-4">
+            <p><h5>Edycja pojazdu</h5></p>
         </div>
     </div>
     <div class="row">
         <div class="col">
             <form action="/vehicleEdit" method="post">
-                <p>Model: <input name="model" value="${vehicle.model}"></p>
-                <p>Marka: <input name="brand" value="${vehicle.brand}"></p>
-                <p>Rok produkcji: <input type="date" name="birth" value="${vehicle.birth}"></p>
-                <p>Numer rejestracyjny: <input name="regNumber" value="${vehicle.regNumber}"></p>
-                <p>Data następnego przeglądu: <input type="date" name="nextServiceDate" value="${vehicle.nextServiceDate}"></p>
-                <p>Właściciel:
-                    <select name="customerId">
+                <div class="form-group col-3">
+                    <label>Marka:</label>
+                    <input name="brand" value="${vehicle.brand}" class="form-control">
+                </div>
+                <div class="form-group col-3">
+                    <label>Model:</label>
+                    <input name="model" value="${vehicle.model}" class="form-control">
+                </div>
+                <div class="form-group col-3">
+                    <label>Rok produkcji:</label>
+                    <input type="date" name="birth" value="${vehicle.birth}" class="form-control">
+                </div>
+                <div class="form-group col-3">
+                    <label>Numer rejestracyjny:</label>
+                    <input name="regNumber" value="${vehicle.regNumber}" class="form-control">
+                </div>
+                <div class="form-group col-3">
+                    <label>Data następnego przeglądu:</label>
+                    <input type="date" name="nextServiceDate" value="${vehicle.nextServiceDate}" class="form-control">
+                </div>
+                <div class="form-group col-3">
+                    <label>Właściciel:</label>
+                    <select name="customerId" class="form-control">
                         <c:forEach items="${customers}" var="customer">
                             <option value="${customer.id}" <c:if test="${vehicle.customerId == customer.id}">selected</c:if>>${customer.name} ${customer.surname}</option>
                         </c:forEach>
                     </select>
-                </p>
-                <input type="hidden" name="id" value="${vehicle.id}">
-                <p>
-                    <button type="submit">zapisz</button>
-                </p>
+                </div>
+                <div class="form-group col-3">
+                    <input type="hidden" name="id" value="${vehicle.id}">
+                    <button type="submit" class="btn btn-info btn-sm">Zapisz</button>
+                </div>
             </form>
         </div>
     </div>

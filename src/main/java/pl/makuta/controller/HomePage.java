@@ -1,6 +1,8 @@
 package pl.makuta.controller;
 
+import pl.makuta.dao.EmployeeDao;
 import pl.makuta.dao.OrderDao;
+import pl.makuta.dao.VehicleDao;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -17,8 +19,9 @@ public class HomePage extends HttpServlet {
         resp.setCharacterEncoding("UTF-8");
         resp.setContentType("text/html;charset=UTF-8");
 
-        OrderDao orderDao = new OrderDao();
-        req.setAttribute("orders", orderDao.findAllOrdersByStatus("ADDED"));
+        req.setAttribute("orders", new OrderDao().findAllOrdersByStatus("ADDED"));
+        req.setAttribute("vehicleDao", new VehicleDao());
+        req.setAttribute("employeeDao", new EmployeeDao());
         req.getRequestDispatcher("/index.jsp").forward(req, resp);
     }
 }

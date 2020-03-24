@@ -12,17 +12,28 @@
         </div>
     </div>
     <div class="row">
-        <div class="col">
-            <h4>Klient</h4>
+        <div class="col px-4">
+            <p><h5>Dodaj klienta</h5></p>
         </div>
     </div>
     <div class="row">
         <div class="col">
             <form action="/customerAdd" method="post">
-                <p>Imię: <input name="name"></p>
-                <p>Nazwisko: <input name="surname"></p>
-                <p>Data urodzin: <input type="date" name="birthDate"></p>
-                <p> <button type="submit">Dodaj</button> </p>
+                <div class="form-group col-3">
+                    <label>Imię: </label>
+                    <input name="name" class="form-control" placeholder="Wpisz imię">
+                </div>
+                <div class="form-group col-3">
+                    <label>Nazwisko: </label>
+                    <input name="surname" class="form-control" placeholder="Wpisz nazwisko">
+                </div>
+                <div class="form-group col-3">
+                    <label>Data urodzin: </label>
+                    <input type="date" name="birthDate" class="form-control">
+                </div>
+                <div class="col-3">
+                    <button type="submit" class="btn btn-info btn-sm">Dodaj</button>
+                </div>
             </form>
         </div>
     </div>

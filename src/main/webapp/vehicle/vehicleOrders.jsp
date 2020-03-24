@@ -12,8 +12,8 @@
         </div>
     </div>
     <div class="row">
-        <div class="col">
-            <h4>Naprawy pojazdu: ${vehicle.getModel()} ${vehicle.getBrand()} ${vehicle.getRegNumber()}</h4>
+        <div class="col px-4">
+            <p><h5>Naprawy pojazdu: ${vehicle.getModel()} ${vehicle.getBrand()} ${vehicle.getRegNumber()}</h5></p>
         </div>
     </div>
     <div class="row">
@@ -42,16 +42,17 @@
                         <td>${order.problemDescription}</td>
                         <td>${order.repairDescription}</td>
                         <td>${order.status.getDesc()}</td>
-                        <td>${vehicleDao.read(order.vehicleId).getModel()} ${vehicleDao.read(order.vehicleId).getBrand()}
-                                ${vehicleDao.read(order.vehicleId).getRegNumber()}
+                        <td>
+                                ${vehicleDao.read(order.vehicleId).getBrand()} ${vehicleDao.read(order.vehicleId).getModel()}
+                                [${vehicleDao.read(order.vehicleId).getRegNumber()}]
                         </td>
                         <td>${order.repairCost}</td>
                         <td>${order.carPartsCost}</td>
                         <td>${order.manHourCost}</td>
                         <td>${order.manHourQuantity}</td>
                         <td>
-                            <a href="/orderEdit?id=${order.id}">Edit</a>
-                            <a href="/orderDelete?id=${order.id}">Delete</a>
+                            <a href="/orderEdit?id=${order.id}" class="text-info">Edytuj</a>
+                            <a href="/orderDelete?id=${order.id}" class="text-info">Usuń</a>
                         </td>
                     </tr>
                 </c:forEach>
@@ -60,7 +61,7 @@
     </div>
     <div class="row">
         <div class="col">
-            <p class="add"><a href="/orderAdd">Dodaj zlecenie</a></p>
+            <p><a href="/orderAdd" class="btn btn-info btn-sm">Dodaj zlecenie</a></p>
         </div>
     </div>
     <div class="row">

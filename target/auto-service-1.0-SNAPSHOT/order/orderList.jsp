@@ -13,15 +13,15 @@
         </div>
     </div>
     <div class="row">
-        <div class="col">
-            <h4>Zlecenia</h4>
+        <div class="col px-4">
+            <p><h5>Zlecenia</h5></p>
         </div>
     </div>
     <div class="row">
         <div class="col">
             <table class="table table-hover">
                 <tr>
-                    <th>Data     </th>
+                    <th>Data</th>
                     <th>Planowana data naprawy</th>
                     <th>Data naprawy</th>
                     <th>Pracownik</th>
@@ -44,27 +44,26 @@
                         <td>${order.problemDescription}</td>
                         <td>${order.repairDescription}</td>
                         <td>${order.status.getDesc()}</td>
-                        <td>${vehicleDao.read(order.vehicleId).getModel()} ${vehicleDao.read(order.vehicleId).getBrand()}
-                                ${vehicleDao.read(order.vehicleId).getRegNumber()}
+                        <td>${vehicleDao.read(order.vehicleId).getBrand()} ${vehicleDao.read(order.vehicleId).getModel()}
+                                [${vehicleDao.read(order.vehicleId).getRegNumber()}]
                         </td>
                         <td><fmt:formatNumber type="currency">${order.repairCost}</fmt:formatNumber></td>
                         <td><fmt:formatNumber type="currency">${order.carPartsCost}</fmt:formatNumber></td>
                         <td><fmt:formatNumber type="currency">${order.manHourCost}</fmt:formatNumber></td>
                         <td>${order.manHourQuantity}</td>
                         <td>
-                            <a href="/orderEdit?id=${order.id}">Edit</a>
-                            <a href="/orderDelete?id=${order.id}">Delete</a>
+                            <a href="/orderEdit?id=${order.id}" class="text-info">Eytuj</a>
+                            <a href="/orderDelete?id=${order.id}" class="text-info">Usuń</a>
                         </td>
                     </tr>
                 </c:forEach>
             </table>
         </div>
     </div>
+
     <div class="row">
-        <div class="col"></div>
         <div class="col">
-<%--            <button type="button" class="btn btn-outline-info"><a href="/orderAdd">Dodaj zlecenie</a></button>--%>
-            <p><a class="btn btn-info" href="/orderAdd">Dodaj zlecenie</a></p>
+            <p><a class="btn btn-info btn-sm" href="/orderAdd">Dodaj nowe zlecenie</a></p>
         </div>
     </div>
     <div class="row">

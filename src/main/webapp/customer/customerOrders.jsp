@@ -12,8 +12,8 @@
         </div>
     </div>
     <div class="row">
-        <div class="col">
-            <h4>Zlecenia klienta: ${customer.getName()} ${customer.getSurname()}</h4>
+        <div class="col px-4">
+            <p><h5>Zlecenia klienta: ${customer.getName()} ${customer.getSurname()}</h5>
         </div>
     </div>
     <div class="row">
@@ -51,8 +51,8 @@
                         <td>${order.manHourCost}</td>
                         <td>${order.manHourQuantity}</td>
                         <td>
-                            <a href="/orderEdit?id=${order.id}">Edit</a>
-                            <a href="/orderDelete?id=${order.id}">Delete</a>
+                            <a href="/orderEdit?id=${order.id}" class="text-info">Edytuj</a>
+                            <a href="/orderDelete?id=${order.id}" class="text-info">Usuń</a>
                         </td>
                     </tr>
                 </c:forEach>
@@ -61,7 +61,7 @@
     </div>
     <div class="row">
         <div class="col">
-            <p class="add"><a href="/orderAdd">Dodaj zlecenie</a></p>
+            <p><a class="btn btn-info btn-sm" href="/orderAdd">Dodaj zlecenie</a></p>
         </div>
     </div>
     <div class="row">

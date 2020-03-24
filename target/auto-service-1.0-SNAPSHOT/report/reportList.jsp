@@ -11,8 +11,8 @@
         </div>
     </div>
     <div class="row">
-        <div class="col">
-            <h4>Raporty:</h4>
+        <div class="col px-4">
+            <p><h5>Raporty:</h5></p>
         </div>
     </div>
     <div class="row">

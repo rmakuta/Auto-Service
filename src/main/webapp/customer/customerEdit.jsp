@@ -12,20 +12,29 @@
         </div>
     </div>
     <div class="row">
-        <div class="col">
-            <h4>Klient</h4>
+        <div class="col px-4">
+            <p><h5>Edytuj klienta</h5></p>
         </div>
     </div>
     <div class="row">
         <div class="col">
             <form action="/customerEdit" method="post">
-                <p>Imię: <input name="name" value="${customer.name}"></p>
-                <p>Nazwisko: <input name="surname" value="${customer.surname}"></p>
-                <p>Data urodzin: <input type="date" name="birthDate" value="${customer.birthDate}"></p>
-                <input type="hidden" name="id" value="${customer.id}">
-                <p>
-                    <button type="submit">zapisz</button>
-                </p>
+                <div class="form-group col-3">
+                    <label>Imię:</label>
+                    <input name="name" value="${customer.name}" class="form-control">
+                </div>
+                <div class="form-group col-3"">
+                    <label>Nazwisko:</label>
+                    <input name="surname" value="${customer.surname}" class="form-control">
+                </div>
+                <div class="form-group col-3"">
+                    <label>Data urodzin:</label>
+                    <input type="date" name="birthDate" value="${customer.birthDate}" class="form-control">
+                </div>
+                <div class="form-group col-3">
+                    <input type="hidden" name="id" value="${customer.id}">
+                    <button type="submit" class="btn btn-info btn-sm">Zapisz</button>
+                </div>
             </form>
         </div>
     </div>

@@ -13,8 +13,8 @@
         </div>
     </div>
     <div class="row">
-        <div class="col">
-            <h4>Pracownicy</h4>
+        <div class="col px-4">
+            <p><h5>Pracownicy</h5></p>
         </div>
     </div>
     <div class="row">
@@ -38,9 +38,9 @@
                         <td>${employee.note}</td>
                         <td><fmt:formatNumber type="currency">${employee.manHourCost}</fmt:formatNumber></td>
                         <td>
-                            <a href="/employeeEdit?id=${employee.id}">Edytuj</a>
-                            <a href="/employeeDelete?id=${employee.id}">Usuń</a>
-                            <a href="/employeeOrders?id=${employee.id}">Zlecenia</a>
+                            <a href="/employeeEdit?id=${employee.id}" class="text-info">Edytuj</a>
+                            <a href="/employeeDelete?id=${employee.id}" class="text-info">Usuń</a>
+                            <a href="/employeeOrders?id=${employee.id}" class="text-info">Zlecenia</a>
                         </td>
                     </tr>
                 </c:forEach>
@@ -49,7 +49,7 @@
     </div>
     <div class="row">
         <div class="col">
-            <p class="add"><a href="/employee/employeeAdd.jsp">Dodaj nowego pracownika</a></p>
+            <p><a class="btn btn-info btn-sm float-none" href="/employee/employeeAdd.jsp">Dodaj nowego pracownika</a></p>
         </div>
     </div>
     <div class="row">
