@@ -12,19 +12,21 @@
         </div>
     </div>
     <div class="row">
-        <div class="col px-4">
-            <p><h5>Raport: roboczogodziny</h5></p>
+        <div class="col px-5">
+            <p><h5>raport: ROBOCZOGODZINY</h5></p>
         </div>
     </div>
     <div class="row">
         <div class="col">
             <table class="table table-hover">
                 <tr>
+                    <th>#</th>
                     <th>Imię i Nazwisko</th>
                     <th>Ilość roboczogodzin</th>
                 </tr>
-                <c:forEach items="${mapNew}" var="m">
+                <c:forEach items="${mapNew}" var="m" varStatus="theCount">
                     <tr>
+                        <td><strong>${theCount.index+1}</strong></td>
                         <td>${m.getKey()}</td>
                         <td>${m.getValue()}</td>
                     </tr>

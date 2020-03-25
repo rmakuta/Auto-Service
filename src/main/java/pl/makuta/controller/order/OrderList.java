@@ -1,5 +1,6 @@
 package pl.makuta.controller.order;
 
+import pl.makuta.dao.CustomerDao;
 import pl.makuta.dao.EmployeeDao;
 import pl.makuta.dao.OrderDao;
 import pl.makuta.dao.VehicleDao;
@@ -21,13 +22,10 @@ public class OrderList extends HttpServlet {
         resp.setCharacterEncoding("UTF-8");
         resp.setContentType("text/html;charset=UTF-8");
 
-        OrderDao orderDao = new OrderDao();
-        List<Order> orders = orderDao.findAll();
-        req.setAttribute("orders", orders);
-        EmployeeDao employeeDao = new EmployeeDao();
-        req.setAttribute("employeeDao", employeeDao);
-        VehicleDao vehicleDao = new VehicleDao();
-        req.setAttribute("vehicleDao", vehicleDao);
+        req.setAttribute("orders", new OrderDao().findAll());
+        req.setAttribute("employeeDao", new EmployeeDao());
+        req.setAttribute("vehicleDao", new VehicleDao());
+        req.setAttribute("customerDao", new CustomerDao());
         req.getRequestDispatcher("/order/orderList.jsp").forward(req, resp);
     }
 }

@@ -7,3 +7,4 @@ Wykorzystane technologie:
 - Servlets
 - JSP
 - MySQL
+- Bootstrap

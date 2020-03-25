@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
     <title>Lista zleceń</title>
@@ -12,7 +13,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col px-4">
+        <div class="col px-5">
             <p><h5>Zlecenia klienta: ${customer.getName()} ${customer.getSurname()}</h5>
         </div>
     </div>
@@ -20,6 +21,7 @@
         <div class="col">
             <table class="table table-hover">
                 <tr>
+                    <th>#</th>
                     <th>Data</th>
                     <th>Planowana data naprawy</th>
                     <th>Data naprawy</th>
@@ -34,8 +36,9 @@
                     <th>Ilość roboczogodzin</th>
                     <th></th>
                 </tr>
-                <c:forEach items="${orders}" var="order">
+                <c:forEach items="${orders}" var="order" varStatus="theCount">
                     <tr>
+                        <td><strong>${theCount.index+1}</strong></td>
                         <td>${order.addDate}</td>
                         <td>${order.repairPlannedDate}</td>
                         <td>${order.repairDate}</td>
@@ -46,9 +49,9 @@
                         <td>${vehicleDao.read(order.vehicleId).getModel()} ${vehicleDao.read(order.vehicleId).getBrand()}
                                 ${vehicleDao.read(order.vehicleId).getRegNumber()}
                         </td>
-                        <td>${order.repairCost}</td>
-                        <td>${order.carPartsCost}</td>
-                        <td>${order.manHourCost}</td>
+                        <td><fmt:formatNumber type="currency">${order.repairCost}</fmt:formatNumber></td>
+                        <td><fmt:formatNumber type="currency">${order.carPartsCost}</fmt:formatNumber></td>
+                        <td><fmt:formatNumber type="currency">${order.manHourCost}</fmt:formatNumber></td>
                         <td>${order.manHourQuantity}</td>
                         <td>
                             <a href="/orderEdit?id=${order.id}" class="text-info">Edytuj</a>

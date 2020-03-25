@@ -13,7 +13,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col px-4">
+        <div class="col px-5">
             <p><h5>Raport: zyski z działalności</h5></p>
         </div>
     </div>

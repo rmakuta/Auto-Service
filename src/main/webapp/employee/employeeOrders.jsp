@@ -13,7 +13,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col px-4">
+        <div class="col px-5">
             <p><h5>Zlecenia pracownika: <strong>${employee.getName()} ${employee.getSurname()}</strong></h5></p>
         </div>
     </div>
@@ -21,26 +21,28 @@
         <div class="col">
             <table class="table table-hover">
                 <tr>
+                    <th>#</th>
                     <th>Data</th>
                     <th>Planowana data naprawy</th>
                     <th>Data naprawy</th>
-                    <th>Pracownik</th>
+<%--                    <th>Pracownik</th>--%>
                     <th>Opis problemu</th>
                     <th>Opis naprawy</th>
                     <th>Status</th>
                     <th>Samochód</th>
                     <th>Koszt naprawy</th>
                     <th>Koszt części</th>
-                    <th>Koszt robotogodziny</th>
-                    <th>Ilość roboczogodzin</th>
+                    <th>Koszt roboczo.</th>
+                    <th>Ilość roboczo.</th>
                     <th></th>
                 </tr>
-                <c:forEach items="${orders}" var="order">
+                <c:forEach items="${orders}" var="order" varStatus="theCount">
                     <tr>
+                        <td><strong>${theCount.index+1}</strong></td>
                         <td>${order.addDate}</td>
                         <td>${order.repairPlannedDate}</td>
                         <td>${order.repairDate}</td>
-                        <td>${employeeDao.read(order.employeeId).getName()} ${employeeDao.read(order.employeeId).getSurname()}</td>
+<%--                        <td>${employeeDao.read(order.employeeId).getName()} ${employeeDao.read(order.employeeId).getSurname()}</td>--%>
                         <td>${order.problemDescription}</td>
                         <td>${order.repairDescription}</td>
                         <td>${order.status.getDesc()}</td>

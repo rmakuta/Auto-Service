@@ -12,7 +12,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col px-4">
+        <div class="col px-5">
             <p><h5>Klienci</h5></p>
         </div>
         <div class="col px-4">
@@ -28,13 +28,15 @@
         <div class="col">
             <table class="table table-hover">
                 <tr>
+                    <th>#</th>
                     <th>Imię</th>
                     <th>Nazwisko</th>
                     <th>Data urodzin</th>
                     <th></th>
                 </tr>
-                <c:forEach items="${customers}" var="customer">
+                <c:forEach items="${customers}" var="customer" varStatus="theCount">
                     <tr>
+                        <td><strong>${theCount.index+1}</strong></td>
                         <td>${customer.name}</td>
                         <td>${customer.surname}</td>
                         <td>${customer.birthDate}</td>

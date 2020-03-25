@@ -1,5 +1,6 @@
 package pl.makuta.controller;
 
+import pl.makuta.dao.CustomerDao;
 import pl.makuta.dao.EmployeeDao;
 import pl.makuta.dao.OrderDao;
 import pl.makuta.dao.VehicleDao;
@@ -22,6 +23,7 @@ public class HomePage extends HttpServlet {
         req.setAttribute("orders", new OrderDao().findAllOrdersByStatus("ADDED"));
         req.setAttribute("vehicleDao", new VehicleDao());
         req.setAttribute("employeeDao", new EmployeeDao());
+        req.setAttribute("customerDao", new CustomerDao());
         req.getRequestDispatcher("/index.jsp").forward(req, resp);
     }
 }
